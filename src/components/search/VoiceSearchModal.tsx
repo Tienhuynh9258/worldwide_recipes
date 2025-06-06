@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { Mic, Square, AlertCircle, Loader2, CookingPot } from 'lucide-react';
+import { Mic, Square, AlertCircle, Loader2, CookingPot, Search } from 'lucide-react';
 import { voiceSearchRecipe } from '@/ai/flows/voice-search-recipe';
 import type { AiGeneratedRecipe } from '@/types';
 import { useToast } from '@/hooks/use-toast';
