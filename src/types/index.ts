@@ -20,9 +20,3 @@ export interface Recipe {
   cookTime?: string;
   servings?: string;
 }
-
-export interface AiGeneratedRecipe {
-  recipeName: string;
-  ingredients: string[]; // Raw string from AI, might need parsing or reformatting
-  instructions: string; // Raw string from AI
-}

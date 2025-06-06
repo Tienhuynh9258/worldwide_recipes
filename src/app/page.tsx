@@ -21,14 +21,11 @@ export default function HomePage() {
   const [isVoiceModalOpen, setIsVoiceModalOpen] = useState(false);
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
   
-  // State to show loading/initial state for recipes if fetched async in future
   const [isLoadingRecipes, setIsLoadingRecipes] = useState(false);
 
 
   useEffect(() => {
-    // This could be an API call in a real app
     setIsLoadingRecipes(true);
-    // Simulate fetching data
     setTimeout(() => {
       setRecipes(mockRecipes);
       setIsLoadingRecipes(false);
@@ -50,7 +47,7 @@ export default function HomePage() {
   }, [recipes, searchTerm, selectedRegion, selectedCountry, selectedIngredients]);
 
   const handleAiRecipeSelect = (recipeName: string) => {
-    setSearchTerm(recipeName); // Set search term based on AI suggestion
+    setSearchTerm(recipeName); 
   };
 
   return (
@@ -113,7 +110,7 @@ export default function HomePage() {
         </div>
       )}
 
-      <VoiceSearchModal isOpen={isVoiceModalOpen} onOpenChange={setIsVoiceModalOpen} />
+      <VoiceSearchModal isOpen={isVoiceModalOpen} onOpenChange={setIsVoiceModalOpen} onRecipeSelect={handleAiRecipeSelect} />
       <ImageSearchModal isOpen={isImageModalOpen} onOpenChange={setIsImageModalOpen} onRecipeSelect={handleAiRecipeSelect} />
     </div>
   );
