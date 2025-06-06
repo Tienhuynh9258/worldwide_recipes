@@ -1,3 +1,4 @@
+
 "use client";
 
 import type { ChangeEvent, Dispatch, SetStateAction } from 'react';
@@ -21,6 +22,9 @@ interface RecipeFiltersProps {
   countries: string[];
   ingredients: string[];
 }
+
+const ALL_REGIONS_PLACEHOLDER_VALUE = "__ALL_REGIONS_PLACEHOLDER__";
+const ALL_COUNTRIES_PLACEHOLDER_VALUE = "__ALL_COUNTRIES_PLACEHOLDER__";
 
 export default function RecipeFilters({
   searchTerm,
@@ -70,12 +74,17 @@ export default function RecipeFilters({
             <IconMapPin size={16} className="mr-2" />
             Filter by Region
           </Label>
-          <Select value={selectedRegion} onValueChange={setSelectedRegion}>
+          <Select
+            value={selectedRegion}
+            onValueChange={(value) => {
+              setSelectedRegion(value === ALL_REGIONS_PLACEHOLDER_VALUE ? "" : value);
+            }}
+          >
             <SelectTrigger id="regionFilter" className="w-full">
               <SelectValue placeholder="All Regions" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">All Regions</SelectItem>
+              <SelectItem value={ALL_REGIONS_PLACEHOLDER_VALUE}>All Regions</SelectItem>
               {regions.map(region => (
                 <SelectItem key={region} value={region}>{region}</SelectItem>
               ))}
@@ -89,12 +98,17 @@ export default function RecipeFilters({
             <IconMapPin size={16} className="mr-2" />
            Filter by Country
           </Label>
-          <Select value={selectedCountry} onValueChange={setSelectedCountry}>
+          <Select
+            value={selectedCountry}
+            onValueChange={(value) => {
+              setSelectedCountry(value === ALL_COUNTRIES_PLACEHOLDER_VALUE ? "" : value);
+            }}
+          >
             <SelectTrigger id="countryFilter" className="w-full">
               <SelectValue placeholder="All Countries" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">All Countries</SelectItem>
+              <SelectItem value={ALL_COUNTRIES_PLACEHOLDER_VALUE}>All Countries</SelectItem>
               {countries.map(country => (
                 <SelectItem key={country} value={country}>{country}</SelectItem>
               ))}
