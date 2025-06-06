@@ -1,6 +1,72 @@
 
 import type { Recipe } from '@/types';
 
+export interface CategorizedIngredient {
+  name: string;
+}
+
+export interface IngredientGroup {
+  groupName: string;
+  ingredients: CategorizedIngredient[];
+}
+
+export const categorizedIngredientsData: IngredientGroup[] = [
+  {
+    groupName: 'Protein',
+    ingredients: [
+      { name: 'Chicken Breast' },
+      { name: 'Beef Chuck' },
+      { name: 'Pork Shoulder' },
+      { name: 'Minced Lamb or Beef' },
+      { name: 'Shrimp' }, // Covers "Cooked Shrimp or Crab" and general shrimp
+      { name: 'Tofu' },
+      { name: 'Eggs' },
+      { name: 'Guanciale' },
+      { name: 'Pecorino Romano' },
+      { name: 'Parmesan Cheese' },
+    ],
+  },
+  {
+    groupName: 'Carbohydrate',
+    ingredients: [
+      { name: 'Spaghetti' },
+      { name: 'Sushi Rice' },
+      { name: 'Rice Noodles' },
+      { name: 'Potatoes' },
+      { name: 'Flour' },
+      { name: 'Corn Tortillas' },
+      { name: 'Nori Sheets' },
+    ],
+  },
+  {
+    groupName: 'Fat',
+    ingredients: [
+      { name: 'Coconut Milk' },
+      { name: 'Heavy Cream' },
+      { name: 'Butter' },
+      { name: 'Yogurt' }, // Can be a fat source
+      { name: 'Olive Oil' }, // Adding as a common cooking fat
+    ],
+  },
+  {
+    groupName: 'Vitamins & Minerals (Vegetables, Fruits, Spices)',
+    ingredients: [
+      { name: 'Onion' },
+      { name: 'Garlic' },
+      { name: 'Tomato Puree' }, // Specific, or use 'Tomatoes' if more general
+      { name: 'Chopped Tomatoes' },
+      { name: 'Pineapple' },
+      { name: 'Cucumber' },
+      { name: 'Avocado' },
+      { name: 'Cilantro' },
+      { name: 'Lemongrass' },
+      { name: 'Ginger' },
+      // Could add more like 'Red Chilies', 'Bell Peppers', 'Spinach' etc. if space/needed
+    ],
+  },
+];
+
+
 export const mockRecipes: Recipe[] = [
   {
     id: '1',
@@ -15,10 +81,11 @@ export const mockRecipes: Recipe[] = [
       { name: 'Eggs', quantity: '3', unit: 'large', image: 'https://placehold.co/100x100.png', notes: 'Room temperature' },
       { name: 'Pecorino Romano', quantity: '50', unit: 'g', image: 'https://placehold.co/100x100.png', notes: 'Freshly grated' },
       { name: 'Black Pepper', quantity: 'to taste', unit: '', image: 'https://placehold.co/100x100.png', notes: 'Freshly ground' },
+      { name: 'Olive Oil', quantity: '1', unit: 'tbsp', image: 'https://placehold.co/100x100.png' },
     ],
     instructions: [
       'Cook the spaghetti in salted boiling water until al dente.',
-      'While pasta cooks, fry guanciale in a pan until crispy. Remove guanciale, leave fat in pan.',
+      'While pasta cooks, fry guanciale in a pan with olive oil until crispy. Remove guanciale, leave fat in pan.',
       'In a bowl, whisk eggs and Pecorino Romano. Add a generous amount of black pepper.',
       'Drain pasta, reserving some pasta water. Add pasta to the pan with guanciale fat. Toss to coat.',
       'Remove pan from heat. Quickly mix in egg and cheese mixture. If too thick, add a bit of pasta water.',
@@ -44,9 +111,11 @@ export const mockRecipes: Recipe[] = [
       { name: 'Tomato Puree', quantity: '400', unit: 'g', image: 'https://placehold.co/100x100.png' },
       { name: 'Heavy Cream', quantity: '100', unit: 'ml', image: 'https://placehold.co/100x100.png' },
       { name: 'Garam Masala', quantity: '1', unit: 'tsp', image: 'https://placehold.co/100x100.png' },
+      { name: 'Ginger', quantity: '1', unit: 'tbsp', image: 'https://placehold.co/100x100.png', notes: 'Minced' },
+      { name: 'Garlic', quantity: '2', unit: 'cloves', image: 'https://placehold.co/100x100.png', notes: 'Minced' },
     ],
     instructions: [
-      'Marinate chicken with yogurt and tikka masala paste for at least 1 hour (preferably overnight).',
+      'Marinate chicken with yogurt, tikka masala paste, ginger and garlic for at least 1 hour (preferably overnight).',
       'Grill or pan-fry chicken pieces until cooked through and slightly charred. Set aside.',
       'In a large pan, sauté chopped onion until soft.',
       'Add remaining tikka masala paste (if any), tomato puree, and garam masala. Cook for 5 minutes.',
@@ -73,7 +142,7 @@ export const mockRecipes: Recipe[] = [
       { name: 'Salt', quantity: '1', unit: 'tsp', image: 'https://placehold.co/100x100.png' },
       { name: 'Cucumber', quantity: '1/2', unit: '', image: 'https://placehold.co/100x100.png', notes: 'Julienned' },
       { name: 'Avocado', quantity: '1', unit: '', image: 'https://placehold.co/100x100.png', notes: 'Sliced' },
-      { name: 'Cooked Shrimp or Crab', quantity: '100', unit: 'g', image: 'https://placehold.co/100x100.png', notes: 'Optional' }
+      { name: 'Shrimp', quantity: '100', unit: 'g', image: 'https://placehold.co/100x100.png', notes: 'Cooked, or crab' }
     ],
     instructions: [
       'Cook sushi rice according to package directions. While rice is hot, mix in rice vinegar, sugar, and salt mixture. Let cool.',
@@ -107,10 +176,11 @@ export const mockRecipes: Recipe[] = [
       { name: 'Orange Juice', quantity: '1/2', unit: 'cup', image: 'https://placehold.co/100x100.png' },
       { name: 'White Vinegar', quantity: '1/4', unit: 'cup', image: 'https://placehold.co/100x100.png' },
       { name: 'Cumin', quantity: '1', unit: 'tsp', image: 'https://placehold.co/100x100.png' },
-      { name: 'Oregano', quantity: '1', unit: 'tsp', image: 'https://placehold.co/100x100.png' }
+      { name: 'Oregano', quantity: '1', unit: 'tsp', image: 'https://placehold.co/100x100.png' },
+      { name: 'Garlic', quantity: '3', unit: 'cloves', image: 'https://placehold.co/100x100.png', notes: 'Minced' },
     ],
     instructions: [
-      'Blend rehydrated chilies, achiote paste, orange juice, vinegar, cumin, and oregano to make the marinade.',
+      'Blend rehydrated chilies, achiote paste, orange juice, vinegar, cumin, oregano and garlic to make the marinade.',
       'Marinate sliced pork for at least 4 hours, preferably overnight.',
       'Traditionally, pork is cooked on a vertical spit. For home cooking, layer marinated pork and pineapple slices in a baking dish or on skewers.',
       'Roast at 180°C (350°F) until cooked through and slightly charred, about 30-45 minutes. Or grill on high heat.',
@@ -167,7 +237,8 @@ export const mockRecipes: Recipe[] = [
     description: 'A popular Thai stir-fried noodle dish with a sweet, savory, and tangy flavor profile.',
     ingredients: [
       { name: 'Rice Noodles', quantity: '200', unit: 'g', image: 'https://placehold.co/100x100.png', notes: 'Flat, medium width' },
-      { name: 'Shrimp or Tofu', quantity: '150', unit: 'g', image: 'https://placehold.co/100x100.png', notes: 'Peeled shrimp or firm tofu, cubed' },
+      { name: 'Shrimp', quantity: '150', unit: 'g', image: 'https://placehold.co/100x100.png', notes: 'Peeled, or Tofu cubes' },
+      { name: 'Tofu', quantity: '150', unit: 'g', image: 'https://placehold.co/100x100.png', notes: 'Firm, cubed (alternative to shrimp)' },
       { name: 'Eggs', quantity: '2', unit: '', image: 'https://placehold.co/100x100.png', notes: 'Lightly beaten' },
       { name: 'Garlic Chives', quantity: '1/4', unit: 'cup', image: 'https://placehold.co/100x100.png', notes: 'Chopped, or scallions' },
       { name: 'Bean Sprouts', quantity: '1', unit: 'cup', image: 'https://placehold.co/100x100.png' },
@@ -177,13 +248,15 @@ export const mockRecipes: Recipe[] = [
       { name: 'Palm Sugar', quantity: '2', unit: 'tbsp', image: 'https://placehold.co/100x100.png', notes: 'Or brown sugar' },
       { name: 'Soy Sauce', quantity: '1', unit: 'tbsp', image: 'https://placehold.co/100x100.png' },
       { name: 'Chili Flakes', quantity: '1/2', unit: 'tsp', image: 'https://placehold.co/100x100.png', notes: 'Optional, for garnish' },
-      { name: 'Lime Wedges', quantity: '', unit: '', image: 'https://placehold.co/100x100.png', notes: 'For serving' }
+      { name: 'Lime Wedges', quantity: '', unit: '', image: 'https://placehold.co/100x100.png', notes: 'For serving' },
+      { name: 'Garlic', quantity: '2', unit: 'cloves', image: 'https://placehold.co/100x100.png', notes: 'Minced' },
+      { name: 'Olive Oil', quantity: '2', unit: 'tbsp', image: 'https://placehold.co/100x100.png' },
     ],
     instructions: [
       'Soak rice noodles in warm water until pliable, then drain. Do not oversoak.',
       'Prepare the Pad Thai sauce: mix tamarind paste, fish sauce, palm sugar, and soy sauce in a small bowl. Adjust to taste.',
-      'Heat oil in a wok or large skillet over medium-high heat. Add shrimp or tofu and cook until done. Remove and set aside.',
-      'Add a little more oil if needed. Add minced garlic (if using) and stir-fry for a few seconds until fragrant.',
+      'Heat olive oil in a wok or large skillet over medium-high heat. Add shrimp or tofu and cook until done. Remove and set aside.',
+      'Add a little more oil if needed. Add minced garlic and stir-fry for a few seconds until fragrant.',
       'Push garlic to one side, pour in beaten eggs. Scramble lightly until almost set.',
       'Add drained noodles and Pad Thai sauce to the wok. Stir-fry quickly, tossing to coat noodles evenly with sauce.',
       'Add cooked shrimp/tofu, half the bean sprouts, and garlic chives. Continue to stir-fry for 1-2 minutes until everything is heated through and noodles are tender.',
@@ -214,11 +287,12 @@ export const mockRecipes: Recipe[] = [
       { name: 'Flour', quantity: '100', unit: 'g', image: 'https://placehold.co/100x100.png', notes: 'For béchamel' },
       { name: 'Milk', quantity: '1', unit: 'litre', image: 'https://placehold.co/100x100.png', notes: 'Warm, for béchamel' },
       { name: 'Egg Yolks', quantity: '2', unit: '', image: 'https://placehold.co/100x100.png', notes: 'For béchamel' },
-      { name: 'Parmesan Cheese', quantity: '50', unit: 'g', image: 'https://placehold.co/100x100.png', notes: 'Grated, for béchamel and topping' }
+      { name: 'Parmesan Cheese', quantity: '50', unit: 'g', image: 'https://placehold.co/100x100.png', notes: 'Grated, for béchamel and topping' },
+      { name: 'Olive Oil', quantity: '3', unit: 'tbsp', image: 'https://placehold.co/100x100.png' },
     ],
     instructions: [
-      'Salt eggplant slices and let them sit for 30 minutes to draw out moisture. Pat dry. Pan-fry or bake eggplant (and potato, if using) slices until lightly browned. Set aside.',
-      'For meat sauce: Sauté onion and garlic until soft. Add minced meat and cook until browned. Drain excess fat.',
+      'Salt eggplant slices and let them sit for 30 minutes to draw out moisture. Pat dry. Pan-fry or bake eggplant (and potato, if using) slices in olive oil until lightly browned. Set aside.',
+      'For meat sauce: Sauté onion and garlic in olive oil until soft. Add minced meat and cook until browned. Drain excess fat.',
       'Stir in chopped tomatoes, red wine (if using), cinnamon, and oregano. Simmer for 20-30 minutes until sauce thickens. Season with salt and pepper.',
       'For béchamel: Melt butter in a saucepan. Whisk in flour and cook for 1-2 minutes. Gradually whisk in warm milk until smooth. Cook, stirring, until sauce thickens.',
       'Remove from heat. Whisk in egg yolks and half the Parmesan cheese. Season with salt, pepper, and a pinch of nutmeg (optional).',
@@ -233,7 +307,9 @@ export const mockRecipes: Recipe[] = [
   }
 ];
 
-export const commonIngredients = Array.from(new Set(mockRecipes.flatMap(recipe => recipe.ingredients.map(ing => ing.name.split(" ")[0].replace(/,/g, ''))))).sort();
+// This list can be manually curated or dynamically generated and then refined.
+// For this iteration, we use the categorizedIngredientsData above for filtering.
+// The commonX arrays are for populating dropdowns for region/country if needed and can be generated.
+export const commonIngredients = Array.from(new Set(mockRecipes.flatMap(recipe => recipe.ingredients.map(ing => ing.name)))).sort();
 export const commonRegions = Array.from(new Set(mockRecipes.map(recipe => recipe.region))).sort();
 export const commonCountries = Array.from(new Set(mockRecipes.map(recipe => recipe.country))).sort();
-

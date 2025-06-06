@@ -1,8 +1,9 @@
+
 "use client";
 
 import { useState, useMemo, useEffect } from 'react';
 import type { Recipe } from '@/types';
-import { mockRecipes, commonIngredients, commonRegions, commonCountries } from '@/lib/mock-data';
+import { mockRecipes, commonRegions, commonCountries, categorizedIngredientsData } from '@/lib/mock-data'; // Added categorizedIngredientsData
 import RecipeCard from '@/components/recipes/RecipeCard';
 import RecipeFilters from '@/components/recipes/RecipeFilters';
 import { Button } from '@/components/ui/button';
@@ -12,7 +13,7 @@ import { Mic, ImageUp, AlertTriangle } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 
 export default function HomePage() {
-  const [recipes, setRecipes] = useState<Recipe[]>(mockRecipes);
+  const [recipes, setRecipes] = useState<Recipe[]>([]); // Initialize as empty, load in useEffect
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedRegion, setSelectedRegion] = useState('');
   const [selectedCountry, setSelectedCountry] = useState('');
@@ -21,11 +22,12 @@ export default function HomePage() {
   const [isVoiceModalOpen, setIsVoiceModalOpen] = useState(false);
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
   
-  const [isLoadingRecipes, setIsLoadingRecipes] = useState(false);
+  const [isLoadingRecipes, setIsLoadingRecipes] = useState(true); // Start as true
 
 
   useEffect(() => {
     setIsLoadingRecipes(true);
+    // Simulate API call
     setTimeout(() => {
       setRecipes(mockRecipes);
       setIsLoadingRecipes(false);
@@ -35,11 +37,15 @@ export default function HomePage() {
 
   const filteredRecipes = useMemo(() => {
     return recipes.filter(recipe => {
-      const nameMatch = recipe.name.toLowerCase().includes(searchTerm.toLowerCase());
+      const nameMatch = searchTerm === '' ? true : recipe.name.toLowerCase().includes(searchTerm.toLowerCase());
       const regionMatch = selectedRegion ? recipe.region === selectedRegion : true;
       const countryMatch = selectedCountry ? recipe.country === selectedCountry : true;
+      
+      // Updated ingredient matching logic: recipe must contain ALL selected ingredients
       const ingredientMatch = selectedIngredients.length > 0
-        ? selectedIngredients.some(selIng => recipe.ingredients.some(ing => ing.name.toLowerCase().includes(selIng.toLowerCase())))
+        ? selectedIngredients.every(selIng =>
+            recipe.ingredients.some(ing => ing.name.toLowerCase() === selIng.toLowerCase())
+          )
         : true;
       
       return nameMatch && regionMatch && countryMatch && ingredientMatch;
@@ -48,6 +54,10 @@ export default function HomePage() {
 
   const handleAiRecipeSelect = (recipeName: string) => {
     setSearchTerm(recipeName); 
+    // Optionally clear other filters or scroll to search results
+    setSelectedRegion('');
+    setSelectedCountry('');
+    setSelectedIngredients([]);
   };
 
   return (
@@ -80,14 +90,14 @@ export default function HomePage() {
         setSelectedIngredients={setSelectedIngredients}
         regions={commonRegions}
         countries={commonCountries}
-        ingredients={commonIngredients}
+        categorizedIngredients={categorizedIngredientsData} // Pass categorized data
       />
 
       {isLoadingRecipes ? (
-         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 animate-pulse">
-            {[...Array(6)].map((_, i) => (
-              <div key={i} className="bg-card p-4 rounded-lg shadow h-[320px]">
-                <div className="w-full h-40 bg-muted rounded mb-4"></div>
+         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 animate-pulse">
+            {[...Array(8)].map((_, i) => ( // Show more placeholders
+              <div key={i} className="bg-card p-4 rounded-lg shadow h-[350px]">
+                <div className="w-full h-48 bg-muted rounded mb-4"></div>
                 <div className="w-3/4 h-6 bg-muted rounded mb-2"></div>
                 <div className="w-full h-4 bg-muted rounded mb-1"></div>
                 <div className="w-1/2 h-4 bg-muted rounded"></div>

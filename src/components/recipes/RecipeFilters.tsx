@@ -7,7 +7,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { Search, MapPin as IconMapPin, ListFilter } from 'lucide-react'; // Renamed MapPin to avoid conflict
+import { Search, MapPin as IconMapPin, ListFilter } from 'lucide-react';
+import type { IngredientGroup } from '@/lib/mock-data'; // Import the new types
 
 interface RecipeFiltersProps {
   searchTerm: string;
@@ -20,7 +21,7 @@ interface RecipeFiltersProps {
   setSelectedIngredients: Dispatch<SetStateAction<string[]>>;
   regions: string[];
   countries: string[];
-  ingredients: string[];
+  categorizedIngredients: IngredientGroup[]; // Changed prop
 }
 
 const ALL_REGIONS_PLACEHOLDER_VALUE = "__ALL_REGIONS_PLACEHOLDER__";
@@ -37,14 +38,14 @@ export default function RecipeFilters({
   setSelectedIngredients,
   regions,
   countries,
-  ingredients,
+  categorizedIngredients, // Changed prop
 }: RecipeFiltersProps) {
   
-  const handleIngredientChange = (ingredient: string) => {
+  const handleIngredientChange = (ingredientName: string) => {
     setSelectedIngredients(prev =>
-      prev.includes(ingredient)
-        ? prev.filter(item => item !== ingredient)
-        : [...prev, ingredient]
+      prev.includes(ingredientName)
+        ? prev.filter(item => item !== ingredientName)
+        : [...prev, ingredientName]
     );
   };
 
@@ -52,7 +53,6 @@ export default function RecipeFilters({
     <div className="mb-8 p-6 bg-card rounded-lg shadow">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         
-        {/* Dish Name Search */}
         <div className="space-y-2">
           <Label htmlFor="dishNameSearch" className="flex items-center text-sm font-medium">
             <Search size={16} className="mr-2" />
@@ -68,7 +68,6 @@ export default function RecipeFilters({
           />
         </div>
 
-        {/* Region Filter */}
         <div className="space-y-2">
           <Label htmlFor="regionFilter" className="flex items-center text-sm font-medium">
             <IconMapPin size={16} className="mr-2" />
@@ -92,7 +91,6 @@ export default function RecipeFilters({
           </Select>
         </div>
 
-        {/* Country Filter */}
         <div className="space-y-2">
           <Label htmlFor="countryFilter" className="flex items-center text-sm font-medium">
             <IconMapPin size={16} className="mr-2" />
@@ -117,31 +115,43 @@ export default function RecipeFilters({
         </div>
       </div>
 
-      {/* Ingredient Filter */}
       <Accordion type="single" collapsible className="w-full mt-6">
-        <AccordionItem value="ingredients">
+        <AccordionItem value="ingredients-main">
           <AccordionTrigger className="text-sm font-medium">
             <div className="flex items-center">
               <ListFilter size={16} className="mr-2" />
-              Filter by Ingredients
+              Filter by Ingredients (Nutritional Groups)
             </div>
           </AccordionTrigger>
           <AccordionContent>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 pt-4">
-              {ingredients.slice(0, 10).map(ingredient => ( // Show first 10 common ingredients
-                <div key={ingredient} className="flex items-center space-x-2">
-                  <Checkbox
-                    id={`ingredient-${ingredient}`}
-                    checked={selectedIngredients.includes(ingredient)}
-                    onCheckedChange={() => handleIngredientChange(ingredient)}
-                  />
-                  <Label htmlFor={`ingredient-${ingredient}`} className="text-sm font-normal cursor-pointer">
-                    {ingredient}
-                  </Label>
-                </div>
+            <Accordion type="multiple" collapsible className="w-full space-y-1 pt-2">
+              {categorizedIngredients.map((group) => (
+                <AccordionItem key={group.groupName} value={group.groupName}>
+                  <AccordionTrigger className="text-sm py-2 hover:bg-muted/50 rounded-md px-2">
+                    {group.groupName} ({group.ingredients.length})
+                  </AccordionTrigger>
+                  <AccordionContent className="pt-2 pb-0">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-3 pl-4">
+                      {group.ingredients.map(ingredient => (
+                        <div key={ingredient.name} className="flex items-center space-x-2">
+                          <Checkbox
+                            id={`ingredient-${group.groupName}-${ingredient.name}`}
+                            checked={selectedIngredients.includes(ingredient.name)}
+                            onCheckedChange={() => handleIngredientChange(ingredient.name)}
+                          />
+                          <Label 
+                            htmlFor={`ingredient-${group.groupName}-${ingredient.name}`} 
+                            className="text-sm font-normal cursor-pointer hover:text-primary"
+                          >
+                            {ingredient.name}
+                          </Label>
+                        </div>
+                      ))}
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
               ))}
-            </div>
-             {ingredients.length > 10 && <p className="text-xs text-muted-foreground mt-2">Showing first 10 common ingredients. More specific search can be done via AI.</p>}
+            </Accordion>
           </AccordionContent>
         </AccordionItem>
       </Accordion>
