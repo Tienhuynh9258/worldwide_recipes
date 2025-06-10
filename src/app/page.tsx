@@ -9,7 +9,7 @@ import RecipeFilters from '@/components/recipes/RecipeFilters';
 import { Button } from '@/components/ui/button';
 import VoiceSearchModal from '@/components/search/VoiceSearchModal';
 import ImageSearchModal from '@/components/search/ImageSearchModal';
-import { Mic, ImageUp, AlertTriangle, Search, ChefHat } from 'lucide-react';
+import { Mic, ImageUp, AlertTriangle, Search, ChefHat, ListFilter } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import { Input } from '@/components/ui/input';
 import Image from 'next/image';
@@ -39,10 +39,14 @@ export default function HomePage() {
 
   const handleHeroSearch = () => {
     setSearchTerm(heroSearchTerm);
-    // Optionally clear other filters or scroll to search results
     setSelectedRegion('');
     setSelectedCountry('');
     setSelectedIngredients([]);
+    // Scroll to results if needed, or simply let the page re-render
+    const recipeSection = document.getElementById('recipe-listing-section');
+    if (recipeSection) {
+      recipeSection.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   const filteredRecipes = useMemo(() => {
@@ -66,105 +70,124 @@ export default function HomePage() {
     setSelectedRegion('');
     setSelectedCountry('');
     setSelectedIngredients([]);
+     const recipeSection = document.getElementById('recipe-listing-section');
+    if (recipeSection) {
+      recipeSection.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
     <div className="space-y-12">
       <section 
-        className="relative text-center py-20 md:py-28 bg-gradient-to-br from-primary/30 via-background to-accent/20 rounded-xl shadow-xl overflow-hidden border border-border/30"
+        className="relative text-center py-20 md:py-32 bg-gradient-to-br from-primary/20 via-background to-accent/10 rounded-xl shadow-xl overflow-hidden border border-border/20"
       >
-        <div className="absolute inset-0 opacity-10">
-           <Image src="https://placehold.co/1600x600.png" alt="Abstract culinary background" layout="fill" objectFit="cover" data-ai-hint="abstract culinary pattern" />
+        <div className="absolute inset-0 opacity-5">
+           <Image src="https://placehold.co/1600x800.png" alt="Abstract culinary background" layout="fill" objectFit="cover" data-ai-hint="abstract food pattern" priority />
         </div>
 
         <div className="relative z-10 container mx-auto px-4">
-          <ChefHat className="mx-auto h-16 w-16 text-primary mb-4 opacity-80" />
-          <h1 className="text-4xl md:text-6xl font-headline text-foreground mb-6">
-            Discover Your Next Favorite Dish
+          <ChefHat className="mx-auto h-20 w-20 text-primary mb-6 opacity-90" />
+          <h1 className="text-5xl md:text-7xl font-headline text-foreground mb-8 leading-tight">
+            Explore a World of Flavors
           </h1>
-          <p className="text-lg md:text-xl text-foreground/80 mb-10 max-w-2xl mx-auto">
-            Journey through a world of authentic flavors. Search, explore, and cook with confidence.
+          <p className="text-xl md:text-2xl text-foreground/80 mb-12 max-w-3xl mx-auto">
+            Discover authentic recipes from every corner of the globe. Your culinary adventure starts here.
           </p>
-          <div className="max-w-xl mx-auto flex flex-col sm:flex-row items-center gap-3 mb-8">
+          <div className="max-w-2xl mx-auto flex flex-col sm:flex-row items-center gap-4 mb-10">
             <Input
               type="text"
-              placeholder="Search recipes (e.g., Pizza, Sushi, Curry...)"
+              placeholder="Search for recipes (e.g., Pizza, Sushi, Tacos...)"
               value={heroSearchTerm}
               onChange={(e) => setHeroSearchTerm(e.target.value)}
               onKeyPress={(e) => e.key === 'Enter' && handleHeroSearch()}
-              className="flex-grow text-base py-3 px-4 h-12 bg-card text-foreground focus:bg-card/90 shadow-sm"
+              className="flex-grow text-base py-3.5 px-5 h-14 bg-card text-foreground focus:bg-card/90 shadow-lg border-border/50 focus:ring-2 focus:ring-primary/50"
               aria-label="Search recipes"
             />
-            <Button size="lg" onClick={handleHeroSearch} className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 h-12 shadow-md hover:shadow-lg transition-shadow w-full sm:w-auto">
-              <Search size={20} className="mr-2" /> Search
+            <Button size="lg" onClick={handleHeroSearch} className="bg-primary hover:bg-primary/90 text-primary-foreground px-10 h-14 shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto text-base">
+              <Search size={22} className="mr-2.5" /> Search
             </Button>
           </div>
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-5">
             <Button 
               size="lg" 
               variant="outline"
               onClick={() => setIsVoiceModalOpen(true)} 
-              className="bg-card/80 hover:bg-card text-foreground border-border/70 backdrop-blur-sm shadow-sm hover:shadow-md transition-all h-12"
+              className="bg-card/70 hover:bg-card text-foreground border-border/60 backdrop-blur-sm shadow-md hover:shadow-lg transition-all duration-300 h-12 text-base px-6"
             >
-              <Mic className="mr-2 text-primary/80" /> Search with Voice
+              <Mic className="mr-2 text-primary/90" /> Search with Voice
             </Button>
             <Button 
               size="lg" 
               variant="outline"
               onClick={() => setIsImageModalOpen(true)} 
-              className="bg-card/80 hover:bg-card text-foreground border-border/70 backdrop-blur-sm shadow-sm hover:shadow-md transition-all h-12"
+              className="bg-card/70 hover:bg-card text-foreground border-border/60 backdrop-blur-sm shadow-md hover:shadow-lg transition-all duration-300 h-12 text-base px-6"
             >
-              <ImageUp className="mr-2 text-primary/80" /> Search with Image
+              <ImageUp className="mr-2 text-primary/90" /> Search with Image
             </Button>
           </div>
         </div>
       </section>
 
-      <Separator className="my-12 bg-border/50" />
+      <Separator className="my-16 bg-border/40" />
+      
+      <div id="filter-section" className="scroll-mt-20">
+        <RecipeFilters
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+          selectedRegion={selectedRegion}
+          setSelectedRegion={setSelectedRegion}
+          selectedCountry={selectedCountry}
+          setSelectedCountry={setSelectedCountry}
+          selectedIngredients={selectedIngredients}
+          setSelectedIngredients={setSelectedIngredients}
+          regions={commonRegions}
+          countries={commonCountries}
+          categorizedIngredients={categorizedIngredientsData}
+        />
+      </div>
 
-      <RecipeFilters
-        searchTerm={searchTerm}
-        setSearchTerm={setSearchTerm}
-        selectedRegion={selectedRegion}
-        setSelectedRegion={setSelectedRegion}
-        selectedCountry={selectedCountry}
-        setSelectedCountry={setSelectedCountry}
-        selectedIngredients={selectedIngredients}
-        setSelectedIngredients={setSelectedIngredients}
-        regions={commonRegions}
-        countries={commonCountries}
-        categorizedIngredients={categorizedIngredientsData}
-      />
+      <section id="recipe-listing-section" className="scroll-mt-20">
+        <div className="flex justify-between items-center mb-8">
+          <h2 className="text-3xl font-headline text-foreground flex items-center">
+            <ListFilter size={30} className="mr-3 text-accent" />
+            {searchTerm || selectedRegion || selectedCountry || selectedIngredients.length > 0 ? "Filtered Recipes" : "Discover Recipes"}
+          </h2>
+          { (searchTerm || selectedRegion || selectedCountry || selectedIngredients.length > 0) && (
+            <p className="text-sm text-muted-foreground">Showing {filteredRecipes.length} matching recipes</p>
+          )}
+        </div>
 
-      {isLoadingRecipes ? (
-         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-            {[...Array(8)].map((_, i) => (
-              <div key={i} className="bg-card p-4 rounded-xl shadow-lg h-[420px] animate-pulse">
-                <div className="w-full h-56 bg-muted rounded-lg mb-4"></div>
-                <div className="w-3/4 h-7 bg-muted rounded mb-3"></div>
-                <div className="w-full h-5 bg-muted rounded mb-2"></div>
-                <div className="w-1/2 h-5 bg-muted rounded"></div>
-              </div>
+        {isLoadingRecipes ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+              {[...Array(8)].map((_, i) => (
+                <div key={i} className="bg-card p-4 rounded-xl shadow-lg h-[450px] animate-pulse">
+                  <div className="w-full h-60 bg-muted rounded-lg mb-4"></div>
+                  <div className="w-3/4 h-8 bg-muted rounded mb-3"></div>
+                  <div className="w-full h-6 bg-muted rounded mb-2"></div>
+                  <div className="w-1/2 h-6 bg-muted rounded"></div>
+                </div>
+              ))}
+          </div>
+        ) : filteredRecipes.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            {filteredRecipes.map(recipe => (
+              <RecipeCard key={recipe.id} recipe={recipe} />
             ))}
-        </div>
-      ) : filteredRecipes.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-          {filteredRecipes.map(recipe => (
-            <RecipeCard key={recipe.id} recipe={recipe} />
-          ))}
-        </div>
-      ) : (
-        <div className="text-center py-16 bg-card rounded-xl shadow-md border border-border/50">
-          <AlertTriangle className="mx-auto h-16 w-16 text-accent mb-6" />
-          <h3 className="text-2xl font-semibold text-foreground mb-3">No Recipes Found</h3>
-          <p className="text-muted-foreground max-w-md mx-auto">
-            We couldn't find any recipes matching your current filters. Try adjusting your search terms or broadening your criteria.
-          </p>
-        </div>
-      )}
+          </div>
+        ) : (
+          <div className="text-center py-20 bg-card rounded-xl shadow-lg border border-border/40">
+            <AlertTriangle className="mx-auto h-20 w-20 text-accent mb-8" />
+            <h3 className="text-3xl font-semibold text-foreground mb-4">No Recipes Found</h3>
+            <p className="text-lg text-muted-foreground max-w-lg mx-auto">
+              We couldn't find any recipes matching your current filters. Try adjusting your search or broadening your criteria.
+            </p>
+          </div>
+        )}
+      </section>
 
       <VoiceSearchModal isOpen={isVoiceModalOpen} onOpenChange={setIsVoiceModalOpen} onRecipeSelect={handleAiRecipeSelect} />
       <ImageSearchModal isOpen={isImageModalOpen} onOpenChange={setIsImageModalOpen} onRecipeSelect={handleAiRecipeSelect} />
     </div>
   );
 }
+
