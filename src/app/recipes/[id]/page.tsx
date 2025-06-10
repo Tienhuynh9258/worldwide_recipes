@@ -1,3 +1,4 @@
+
 import { mockRecipes } from '@/lib/mock-data';
 import type { Recipe, Ingredient } from '@/types';
 import Image from 'next/image';
@@ -7,19 +8,13 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { ArrowLeft, Clock, Users, Soup, CheckCircle } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { Badge } from '@/components/ui/badge';
 
 interface RecipePageProps {
   params: { id: string };
 }
 
-// This function can be used with dynamic rendering if data comes from an API.
-// For static generation with a fixed set of recipes:
-// export async function generateStaticParams() {
-//   return mockRecipes.map(recipe => ({ id: recipe.id }));
-// }
-
 async function getRecipe(id: string): Promise<Recipe | undefined> {
-  // In a real app, this would be an API call.
   return mockRecipes.find(recipe => recipe.id === id);
 }
 
@@ -28,87 +23,81 @@ export default async function RecipePage({ params }: RecipePageProps) {
 
   if (!recipe) {
     return (
-      <div className="text-center py-10">
-        <h1 className="text-2xl font-bold">Recipe not found</h1>
-        <Link href="/" className="text-primary hover:underline mt-4 inline-block">
-          Back to recipes
-        </Link>
+      <div className="text-center py-12">
+        <h1 className="text-3xl font-bold text-destructive mb-4">Recipe Not Found</h1>
+        <p className="text-muted-foreground mb-6">Sorry, we couldn't find the recipe you're looking for.</p>
+        <Button asChild>
+          <Link href="/">
+            <ArrowLeft size={18} className="mr-2" /> Back to All Recipes
+          </Link>
+        </Button>
       </div>
     );
   }
 
   return (
-    <div className="max-w-4xl mx-auto">
-      <Button variant="outline" asChild className="mb-6">
+    <div className="max-w-5xl mx-auto py-8">
+      <Button variant="outline" asChild className="mb-8 text-sm">
         <Link href="/">
-          <ArrowLeft size={18} className="mr-2" /> Back to Recipes
+          <ArrowLeft size={16} className="mr-2" /> Back to Recipes
         </Link>
       </Button>
 
-      <Card className="overflow-hidden shadow-xl">
+      <Card className="overflow-hidden shadow-2xl rounded-xl border-border/50">
         <CardHeader className="p-0 relative">
-          <div className="w-full h-72 md:h-96 relative">
+          <div className="w-full h-[400px] md:h-[500px] relative"> {/* Increased height */}
             <Image
               src={recipe.image}
               alt={recipe.name}
               layout="fill"
               objectFit="cover"
               priority
-              data-ai-hint="food dish"
+              data-ai-hint="food dish plated"
+              className="rounded-t-xl"
             />
+             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
           </div>
-          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 via-black/50 to-transparent p-6">
-            <h1 className="text-3xl md:text-4xl font-headline text-white mb-2">{recipe.name}</h1>
-            <p className="text-base text-gray-200">{recipe.description}</p>
+          <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10">
+            <Badge variant="secondary" className="mb-3 bg-white/20 text-white backdrop-blur-sm">
+              {recipe.region} &bull; {recipe.country}
+            </Badge>
+            <h1 className="text-4xl md:text-5xl font-headline text-white mb-3 drop-shadow-lg">{recipe.name}</h1>
+            <p className="text-base md:text-lg text-gray-200 drop-shadow-sm max-w-3xl">{recipe.description}</p>
           </div>
         </CardHeader>
 
-        <CardContent className="p-6 space-y-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-            {recipe.prepTime && (
-              <div className="p-3 bg-secondary/50 rounded-lg">
-                <Clock size={24} className="mx-auto mb-1 text-primary" />
-                <p className="text-xs text-muted-foreground">Prep Time</p>
-                <p className="font-semibold">{recipe.prepTime}</p>
+        <CardContent className="p-6 md:p-10 space-y-10">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+            {[
+              { icon: Clock, label: "Prep Time", value: recipe.prepTime },
+              { icon: Soup, label: "Cook Time", value: recipe.cookTime },
+              { icon: Users, label: "Servings", value: recipe.servings },
+              { icon: MapPinIcon, label: "Origin", value: `${recipe.region}, ${recipe.country}` }
+            ].filter(item => item.value).map(item => (
+              <div key={item.label} className="p-4 bg-muted/40 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                <item.icon size={28} className="mx-auto mb-2 text-primary" />
+                <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">{item.label}</p>
+                <p className="text-lg font-semibold text-foreground">{item.value}</p>
               </div>
-            )}
-            {recipe.cookTime && (
-              <div className="p-3 bg-secondary/50 rounded-lg">
-                <Soup size={24} className="mx-auto mb-1 text-primary" />
-                <p className="text-xs text-muted-foreground">Cook Time</p>
-                <p className="font-semibold">{recipe.cookTime}</p>
-              </div>
-            )}
-            {recipe.servings && (
-              <div className="p-3 bg-secondary/50 rounded-lg">
-                <Users size={24} className="mx-auto mb-1 text-primary" />
-                <p className="text-xs text-muted-foreground">Servings</p>
-                <p className="font-semibold">{recipe.servings}</p>
-              </div>
-            )}
-             <div className="p-3 bg-secondary/50 rounded-lg">
-                <MapPin size={24} className="mx-auto mb-1 text-primary" />
-                <p className="text-xs text-muted-foreground">Origin</p>
-                <p className="font-semibold">{recipe.region}, {recipe.country}</p>
-              </div>
+            ))}
           </div>
           
           <Separator />
 
           <div>
-            <h2 className="text-2xl font-headline text-foreground mb-4">Ingredients</h2>
-            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4">
+            <h2 className="text-3xl font-headline text-foreground mb-6">Ingredients</h2>
+            <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
               {recipe.ingredients.map((ingredient: Ingredient) => (
-                <li key={ingredient.name} className="flex items-start space-x-3 p-3 bg-muted/30 rounded-md">
-                  <div className="relative w-16 h-16 rounded-md overflow-hidden shrink-0">
-                    <Image src={ingredient.image} alt={ingredient.name} layout="fill" objectFit="cover" data-ai-hint="food item"/>
+                <li key={ingredient.name} className="flex items-center space-x-4 p-4 bg-card rounded-lg shadow-sm border border-border/50 hover:shadow-md transition-shadow">
+                  <div className="relative w-20 h-20 rounded-md overflow-hidden shrink-0 border border-border/30">
+                    <Image src={ingredient.image} alt={ingredient.name} layout="fill" objectFit="cover" data-ai-hint="food item ingredient"/>
                   </div>
-                  <div>
-                    <span className="font-semibold text-foreground">{ingredient.name}</span>
+                  <div className="flex-grow">
+                    <span className="font-semibold text-lg text-foreground block">{ingredient.name}</span>
                     <span className="text-sm text-muted-foreground block">
                       {ingredient.quantity} {ingredient.unit}
                     </span>
-                    {ingredient.notes && <span className="text-xs text-accent italic block">({ingredient.notes})</span>}
+                    {ingredient.notes && <span className="text-xs text-accent italic block mt-1">({ingredient.notes})</span>}
                   </div>
                 </li>
               ))}
@@ -118,14 +107,15 @@ export default async function RecipePage({ params }: RecipePageProps) {
           <Separator />
 
           <div>
-            <h2 className="text-2xl font-headline text-foreground mb-4">Preparation Instructions</h2>
-            <ol className="space-y-4">
+            <h2 className="text-3xl font-headline text-foreground mb-6">Preparation Instructions</h2>
+            <ol className="space-y-6">
               {recipe.instructions.map((step: string, index: number) => (
-                <li key={index} className="flex items-start">
-                  <CheckCircle size={20} className="text-primary mr-3 mt-1 shrink-0" />
-                  <p className="text-foreground">
-                    <span className="font-semibold">Step {index + 1}: </span>{step}
-                  </p>
+                <li key={index} className="flex items-start p-4 bg-card rounded-lg shadow-sm border border-border/50 hover:shadow-md transition-shadow">
+                  <CheckCircle size={24} className="text-primary mr-4 mt-1 shrink-0" />
+                  <div className="flex-grow">
+                    <span className="font-semibold text-foreground block mb-1">Step {index + 1}</span>
+                    <p className="text-foreground/90 leading-relaxed">{step}</p>
+                  </div>
                 </li>
               ))}
             </ol>
@@ -135,9 +125,10 @@ export default async function RecipePage({ params }: RecipePageProps) {
             <>
               <Separator />
               <div>
-                 <Alert>
-                  <AlertTitle className="font-headline text-xl">Chef's Notes</AlertTitle>
-                  <AlertDescription className="mt-2 text-foreground">
+                 <Alert className="bg-accent/10 border-accent/30 text-accent-foreground p-6 rounded-lg">
+                   <MapPinIcon size={20} className="text-accent absolute left-4 top-7 hidden sm:block" /> {/* Example of adding an icon to Alert*/}
+                  <AlertTitle className="font-headline text-2xl text-accent mb-2">Chef's Culinary Notes</AlertTitle>
+                  <AlertDescription className="mt-2 text-accent-foreground/90 leading-relaxed">
                     {recipe.notes}
                   </AlertDescription>
                 </Alert>
@@ -150,8 +141,7 @@ export default async function RecipePage({ params }: RecipePageProps) {
   );
 }
 
-// Helper icon, as lucide-react MapPin might conflict if imported twice in the same file context or similar name exists
-const MapPin = ({ size = 24, className = "" }: { size?: number; className?: string }) => (
+const MapPinIcon = ({ size = 24, className = "" }: { size?: number; className?: string }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={size}
