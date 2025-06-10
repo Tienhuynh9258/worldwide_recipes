@@ -5,9 +5,9 @@ export default function Header() {
   return (
     <header className="bg-background text-foreground shadow-md sticky top-0 z-50 border-b border-border/50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-5 flex items-center justify-between">
-        <Link 
-          href="/" 
-          className="text-3xl md:text-4xl lg:text-[2.75rem] font-headline text-primary hover:opacity-90 transition-opacity tracking-tight leading-tight"
+        <Link
+          href="/"
+          className="text-3xl md:text-4xl lg:text-[2.75rem] font-headline text-primary hover:text-accent transition-colors duration-200 tracking-tight leading-tight"
         >
           Global Gastronomy Guide
         </Link>
