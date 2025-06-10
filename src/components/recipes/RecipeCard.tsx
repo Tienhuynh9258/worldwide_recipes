@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { MapPin, Clock } from 'lucide-react';
+import { MapPin, Clock, Utensils } from 'lucide-react';
 
 interface RecipeCardProps {
   recipe: Recipe;
@@ -28,9 +28,9 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
 
   return (
     <Link href={`/recipes/${recipe.id}`} className="block group rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background">
-      <Card className="h-full flex flex-col overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out border border-border/30 hover:border-primary/60 transform group-hover:scale-[1.02] group-focus-visible:scale-[1.02] group-focus-visible:border-primary/60">
+      <Card className="h-full flex flex-col overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out border border-border/30 hover:border-primary/60 transform group-hover:scale-[1.02] group-focus-visible:scale-[1.02] group-focus-visible:border-primary/60 bg-card">
         <CardHeader className="p-0 relative">
-          <div className="relative w-full aspect-[16/10] overflow-hidden"> {/* Slightly taller aspect ratio */}
+          <div className="relative w-full aspect-[16/10] overflow-hidden">
             <Image
               src={recipe.image}
               alt={recipe.name}
@@ -52,13 +52,13 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
         </CardContent>
         <CardFooter className="p-5 pt-2 border-t border-border/20 mt-auto">
           <div className="flex justify-between items-center w-full">
-            <Badge variant="outline" className="text-xs font-medium bg-accent/10 text-accent-foreground border-accent/30 group-hover:bg-accent/20 group-hover:border-accent/50 transition-colors duration-200">
+            <Badge variant="outline" className="text-xs font-medium bg-accent/10 text-foreground border-accent/30 group-hover:bg-accent/20 group-hover:border-accent/50 transition-colors duration-200">
               <MapPin size={14} className="mr-1.5 text-accent" />
               {recipe.region}, {recipe.country}
             </Badge>
             {totalTime() && (
               <div className="flex items-center text-xs text-muted-foreground group-hover:text-primary transition-colors duration-200">
-                <Clock size={14} className="mr-1" />
+                <Clock size={14} className="mr-1 text-accent" />
                 {totalTime()}
               </div>
             )}
@@ -68,3 +68,4 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
     </Link>
   );
 }
+
