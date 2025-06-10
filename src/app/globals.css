@@ -1,104 +1,102 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: 'PT Sans', sans-serif; /* Default body font */
-}
-
 @layer base {
   :root {
-    --background: 40 35% 96%; /* Warm Parchment */
+    --background: 40 35% 96%; /* Warm Parchment/Creamy Off-White */
     --foreground: 30 15% 25%; /* Deep Warm Taupe */
 
-    --card: 0 0% 100%; /* Crisp White */
+    --card: 0 0% 100%; /* Clean White for cards */
     --card-foreground: 30 15% 25%; /* Deep Warm Taupe */
 
-    --popover: 0 0% 100%; /* Crisp White */
+    --popover: 0 0% 100%; /* Clean White for popovers */
     --popover-foreground: 30 15% 25%; /* Deep Warm Taupe */
 
     --primary: 20 60% 55%; /* Deep Terracotta */
-    --primary-foreground: 40 35% 98%; /* Pale Parchment */
+    --primary-foreground: 40 35% 98%; /* Pale Parchment (for text on primary) */
 
-    --secondary: 40 25% 92%; /* Light Warm Grey */
-    --secondary-foreground: 30 15% 25%; /* Deep Warm Taupe */
+    --secondary: 90 30% 88%; /* Light Sage (lighter for backgrounds) */
+    --secondary-foreground: 90 25% 30%; /* Darker Sage for text on secondary */
 
-    --muted: 40 30% 90%; /* Soft Warm Parchment */
-    --muted-foreground: 30 10% 50%; /* Medium Warm Grey */
+    --muted: 30 25% 90%; /* Soft, Muted Terracotta/Beige */
+    --muted-foreground: 30 15% 45%; /* Muted Taupe */
 
     --accent: 90 30% 50%; /* Muted Sage Green */
-    --accent-foreground: 40 35% 98%; /* Pale Parchment */
+    --accent-foreground: 0 0% 100%; /* White (or very light sage for text on accent) */
+    /* --accent-foreground: 90 50% 95%; */ /* Very Light Sage */
 
-    --destructive: 0 84.2% 60.2%; /* Standard Destructive Red */
-    --destructive-foreground: 0 0% 98%; /* Standard Light Destructive Foreground */
 
-    --border: 40 25% 88%; /* Light Taupe Border */
-    --input: 40 25% 88%; /* Light Taupe Input */
-    --ring: 20 60% 55%; /* Deep Terracotta */
+    --destructive: 0 60% 50%; /* Standard Red for destructive actions */
+    --destructive-foreground: 0 0% 100%; /* White */
+
+    --border: 30 20% 85%; /* Soft, desaturated border */
+    --input: 30 20% 90%; /* Slightly lighter for input backgrounds */
+    --ring: 20 60% 55%; /* Deep Terracotta for focus rings */
 
     --chart-1: 20 60% 55%; /* Deep Terracotta */
     --chart-2: 90 30% 50%; /* Muted Sage Green */
-    --chart-3: 30 50% 65%; /* Muted Peach */
-    --chart-4: 45 40% 75%; /* Soft Gold */
-    --chart-5: 0 0% 70%;   /* Neutral Grey */
-    --radius: 0.5rem;
+    --chart-3: 40 70% 60%; /* Warm Gold */
+    --chart-4: 15 40% 45%; /* Earthy Brown */
+    --chart-5: 200 30% 60%; /* Muted Blue-Gray */
 
-    /* Sidebar variables adjusted to theme */
-    --sidebar-background: 40 30% 93%; /* Warm Off-White */
+    --radius: 0.75rem;
+
+    /* Sidebar variables adjusted to Modern Hearth theme */
+    --sidebar-background: 40 30% 93%; /* Slightly darker Parchment */
     --sidebar-foreground: 30 15% 25%; /* Deep Warm Taupe */
     --sidebar-primary: 20 60% 55%; /* Deep Terracotta */
     --sidebar-primary-foreground: 40 35% 98%; /* Pale Parchment */
     --sidebar-accent: 90 30% 50%; /* Muted Sage Green */
-    --sidebar-accent-foreground: 40 35% 98%; /* Pale Parchment */
-    --sidebar-border: 40 25% 85%; /* Medium Taupe Border */
+    --sidebar-accent-foreground: 0 0% 100%; /* White */
+    --sidebar-border: 30 20% 82%; /* Slightly darker border for sidebar */
     --sidebar-ring: 20 60% 55%; /* Deep Terracotta */
   }
 
   .dark {
-    --background: 30 10% 12%; /* Dark Warm Brown */
-    --foreground: 40 35% 96%; /* Warm Parchment */
+    --background: 30 15% 12%; /* Dark Warm Taupe */
+    --foreground: 40 25% 85%; /* Light Parchment/Cream */
 
-    --card: 30 10% 18%; /* Darker Warm Brown */
-    --card-foreground: 40 35% 96%; /* Warm Parchment */
+    --card: 30 15% 18%; /* Darker Taupe for cards */
+    --card-foreground: 40 25% 85%; /* Light Parchment/Cream */
 
-    --popover: 30 10% 18%; /* Darker Warm Brown */
-    --popover-foreground: 40 35% 96%; /* Warm Parchment */
+    --popover: 30 15% 15%; /* Darkest Taupe for popovers */
+    --popover-foreground: 40 25% 85%; /* Light Parchment/Cream */
 
-    --primary: 20 60% 60%; /* Brighter Terracotta */
-    --primary-foreground: 20 15% 15%; /* Very Dark Taupe */
+    --primary: 20 55% 60%; /* Slightly lighter Terracotta for dark mode */
+    --primary-foreground: 30 10% 10%; /* Very Dark Taupe for text on primary */
 
-    --secondary: 30 10% 25%; /* Mid-Dark Warm Brown */
-    --secondary-foreground: 40 35% 90%; /* Lighter Warm Parchment */
+    --secondary: 90 20% 25%; /* Dark Sage */
+    --secondary-foreground: 90 30% 80%; /* Light Sage for text on secondary */
 
-    --muted: 30 10% 20%; /* Dark Warm Grey */
-    --muted-foreground: 40 20% 75%; /* Light Grey Parchment */
+    --muted: 30 15% 22%; /* Dark Muted Taupe/Beige */
+    --muted-foreground: 30 20% 65%; /* Lighter Muted Taupe */
 
-    --accent: 90 30% 55%; /* Brighter Sage Green */
-    --accent-foreground: 20 15% 15%; /* Very Dark Taupe */
+    --accent: 90 25% 55%; /* Slightly lighter Sage Green for dark mode */
+    --accent-foreground: 0 0% 10%; /* Very Dark, almost black for text on accent */
 
-    --destructive: 0 70% 55%; /* Adjusted Destructive Red for Dark */
-    --destructive-foreground: 0 0% 98%; /* Standard Light Destructive Foreground */
+    --destructive: 0 50% 55%; /* Adjusted Red for dark mode */
+    --destructive-foreground: 0 0% 95%; /* Very Light Red/Off-white */
 
-    --border: 30 10% 30%; /* Mid-Dark Taupe Border */
-    --input: 30 10% 30%; /* Mid-Dark Taupe Input */
-    --ring: 20 60% 60%; /* Brighter Terracotta */
-    
-    --chart-1: 20 60% 60%; /* Brighter Terracotta */
-    --chart-2: 90 30% 55%; /* Brighter Sage Green */
-    --chart-3: 30 50% 55%; /* Darker Muted Peach */
-    --chart-4: 45 40% 65%; /* Darker Soft Gold */
-    --chart-5: 0 0% 50%;   /* Mid Neutral Grey */
+    --border: 30 15% 30%; /* Darker, desaturated border */
+    --input: 30 15% 25%; /* Darker input backgrounds */
+    --ring: 20 55% 60%; /* Lighter Terracotta for focus rings */
 
-    /* Sidebar variables adjusted to dark theme */
-    --sidebar-background: 30 10% 10%; /* Deepest Warm Brown */
-    --sidebar-foreground: 40 35% 96%; /* Warm Parchment */
-    --sidebar-primary: 20 60% 60%; /* Brighter Terracotta */
-    --sidebar-primary-foreground: 20 15% 10%; /* Near Black */
-    --sidebar-accent: 90 30% 55%; /* Brighter Sage Green */
-    --sidebar-accent-foreground: 20 15% 10%; /* Near Black */
-    --sidebar-border: 30 10% 22%; /* Dark Taupe Border */
-    --sidebar-ring: 20 60% 60%; /* Brighter Terracotta */
+    --chart-1: 20 55% 60%;
+    --chart-2: 90 25% 55%;
+    --chart-3: 40 60% 65%;
+    --chart-4: 15 30% 50%;
+    --chart-5: 200 25% 65%;
+
+    /* Sidebar variables adjusted to dark Modern Hearth theme */
+    --sidebar-background: 30 15% 15%; /* Darker Taupe for sidebar bg */
+    --sidebar-foreground: 40 25% 85%; /* Light Parchment */
+    --sidebar-primary: 20 55% 60%; /* Lighter Terracotta */
+    --sidebar-primary-foreground: 30 10% 5%; /* Very dark for text */
+    --sidebar-accent: 90 25% 55%; /* Lighter Sage */
+    --sidebar-accent-foreground: 0 0% 5%; /* Very dark for text */
+    --sidebar-border: 30 15% 25%; /* Darker border */
+    --sidebar-ring: 20 55% 60%; /* Lighter Terracotta */
   }
 }
 
