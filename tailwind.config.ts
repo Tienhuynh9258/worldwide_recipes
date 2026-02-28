@@ -17,11 +17,34 @@ export default {
     },
     extend: {
       fontFamily: {
-        body: ['PT Sans', 'sans-serif'],
+        body: ['Inter', 'PT Sans', 'sans-serif'],
         headline: ['Playfair Display', 'serif'],
-        code: ['monospace'],
+        accent: ['Dancing Script', 'cursive'],
+        code: ['JetBrains Mono', 'monospace'],
       },
-      colors: {
+              colors: {
+        // Food-inspired color palette
+        'spice-orange': '#FF6B35',
+        'tomato-red': '#E74C3C',
+        'herb-green': '#27AE60',
+        'saffron-yellow': '#F39C12',
+        'cream-white': '#FFF8F3',
+        'warm-gray': '#2C3E50',
+        'soft-peach': '#FFE5D9',
+        'deep-wine': '#8E44AD',
+        'paprika': {
+          50: '#FFF4F1',
+          100: '#FFE6DD',
+          200: '#FFCCBB',
+          300: '#FFB199',
+          400: '#FF8B66',
+          500: '#FF6B35',
+          600: '#E85A2E',
+          700: '#CC4926',
+          800: '#B03A1F',
+          900: '#942B18',
+        },
+        
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {

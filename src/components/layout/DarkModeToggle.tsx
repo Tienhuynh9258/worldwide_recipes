@@ -30,14 +30,17 @@ export default function DarkModeToggle() {
     <button
       aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
       onClick={toggleDark}
-      className="fixed top-6 right-6 z-50 bg-card/80 dark:bg-background/80 border border-border/40 rounded-full p-2 shadow-lg hover:shadow-xl transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+      className="fixed bottom-4 left-4 md:top-6 md:right-6 md:bottom-auto md:left-auto z-50 bg-card/90 dark:bg-background/90 backdrop-blur-sm border border-border/50 rounded-full p-2.5 md:p-2 shadow-lg hover:shadow-xl transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary hover:scale-110 active:scale-95"
       tabIndex={0}
     >
       <span className="sr-only">Toggle dark mode</span>
-      <span className="relative flex items-center justify-center w-7 h-7">
-        <ChefHat className={`absolute transition-all duration-300 ${isDark ? 'opacity-0 scale-75' : 'opacity-100 scale-100'} text-primary`} size={22} />
-        <Sun className={`absolute transition-all duration-300 ${isDark ? 'opacity-0 scale-75' : 'opacity-100 scale-100'} text-accent`} size={22} />
-        <Moon className={`absolute transition-all duration-300 ${isDark ? 'opacity-100 scale-100' : 'opacity-0 scale-75'} text-accent`} size={22} />
+      <span className="relative flex items-center justify-center w-6 h-6 md:w-7 md:h-7">
+        <ChefHat className={`absolute transition-all duration-300 ${isDark ? 'opacity-0 scale-75' : 'opacity-100 scale-100'} text-primary`} size={20} />
+        <Sun className={`absolute transition-all duration-300 ${isDark ? 'opacity-0 scale-75' : 'opacity-100 scale-100'} text-accent`} size={20} />
+        <Moon className={`absolute transition-all duration-300 ${isDark ? 'opacity-100 scale-100' : 'opacity-0 scale-75'} text-accent`} size={20} />
+        
+        {/* Mobile hint pulse effect */}
+        <div className="absolute inset-0 rounded-full bg-primary/20 animate-ping md:hidden opacity-20" style={{animationDuration: '3s'}} />
       </span>
     </button>
   );

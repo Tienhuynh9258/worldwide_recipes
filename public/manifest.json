@@ -1,0 +1,35 @@
+{
+  "name": "Worldwide Recipes - Global Culinary Adventure",
+  "short_name": "Worldwide Recipes",
+  "description": "Discover authentic recipes from around the world. Your culinary adventure starts here!",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFF8F3",
+  "theme_color": "#FF6B35",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en",
+  "categories": ["food", "lifestyle", "utilities"],
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Search Recipes",
+      "short_name": "Search",
+      "description": "Search for recipes from around the world",
+      "url": "/?search=true"
+    },
+    {
+      "name": "Popular Recipes",
+      "short_name": "Popular",
+      "description": "View the most popular recipes",
+      "url": "/?filter=popular"
+    }
+  ]
+} 

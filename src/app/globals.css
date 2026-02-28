@@ -4,99 +4,97 @@
 
 @layer base {
   :root {
-    --background: 40 35% 96%; /* Warm Parchment/Creamy Off-White */
-    --foreground: 30 15% 25%; /* Deep Warm Taupe */
+    --background: 30 100% 97%; /* Creamy White #FFF8F3 */
+    --foreground: 210 29% 24%; /* Warm Gray #2C3E50 */
 
-    --card: 0 0% 100%; /* Clean White for cards */
-    --card-foreground: 30 15% 25%; /* Deep Warm Taupe */
+    --card: 0 0% 100%; /* Pure White for cards */
+    --card-foreground: 210 29% 24%; /* Warm Gray */
 
-    --popover: 0 0% 100%; /* Clean White for popovers */
-    --popover-foreground: 30 15% 25%; /* Deep Warm Taupe */
+    --popover: 0 0% 100%; /* Pure White for popovers */
+    --popover-foreground: 210 29% 24%; /* Warm Gray */
 
-    --primary: 20 60% 55%; /* Deep Terracotta */
-    --primary-foreground: 40 35% 98%; /* Pale Parchment (for text on primary) */
+    --primary: 17 100% 60%; /* Spice Orange #FF6B35 */
+    --primary-foreground: 0 0% 100%; /* White text on primary */
 
-    --secondary: 90 30% 88%; /* Light Sage (lighter for backgrounds) */
-    --secondary-foreground: 90 25% 30%; /* Darker Sage for text on secondary */
+    --secondary: 18 100% 92%; /* Soft Peach #FFE5D9 */
+    --secondary-foreground: 210 29% 24%; /* Warm Gray for text on secondary */
 
-    --muted: 30 25% 90%; /* Soft, Muted Terracotta/Beige */
-    --muted-foreground: 30 15% 45%; /* Muted Taupe */
+    --muted: 30 50% 95%; /* Very light cream */
+    --muted-foreground: 210 15% 45%; /* Muted gray */
 
-    --accent: 90 30% 50%; /* Muted Sage Green */
-    --accent-foreground: 0 0% 100%; /* White (or very light sage for text on accent) */
-    /* --accent-foreground: 90 50% 95%; */ /* Very Light Sage */
+    --accent: 145 63% 42%; /* Fresh Herb Green #27AE60 */
+    --accent-foreground: 0 0% 100%; /* White text on accent */
 
-
-    --destructive: 0 60% 50%; /* Standard Red for destructive actions */
+    --destructive: 6 78% 57%; /* Tomato Red #E74C3C */
     --destructive-foreground: 0 0% 100%; /* White */
 
-    --border: 30 20% 85%; /* Soft, desaturated border */
-    --input: 30 20% 90%; /* Slightly lighter for input backgrounds */
-    --ring: 20 60% 55%; /* Deep Terracotta for focus rings */
+    --border: 30 30% 90%; /* Light cream border */
+    --input: 30 50% 96%; /* Very light cream for inputs */
+    --ring: 17 100% 60%; /* Spice Orange for focus rings */
 
-    --chart-1: 20 60% 55%; /* Deep Terracotta */
-    --chart-2: 90 30% 50%; /* Muted Sage Green */
-    --chart-3: 40 70% 60%; /* Warm Gold */
-    --chart-4: 15 40% 45%; /* Earthy Brown */
-    --chart-5: 200 30% 60%; /* Muted Blue-Gray */
+    --chart-1: 17 100% 60%; /* Spice Orange */
+    --chart-2: 145 63% 42%; /* Fresh Herb Green */
+    --chart-3: 35 89% 51%; /* Golden Saffron */
+    --chart-4: 6 78% 57%; /* Tomato Red */
+    --chart-5: 280 44% 47%; /* Deep Wine */
 
     --radius: 0.75rem;
 
-    /* Sidebar variables adjusted to Modern Hearth theme */
-    --sidebar-background: 40 30% 93%; /* Slightly darker Parchment */
-    --sidebar-foreground: 30 15% 25%; /* Deep Warm Taupe */
-    --sidebar-primary: 20 60% 55%; /* Deep Terracotta */
-    --sidebar-primary-foreground: 40 35% 98%; /* Pale Parchment */
-    --sidebar-accent: 90 30% 50%; /* Muted Sage Green */
+    /* Sidebar variables with food-inspired theme */
+    --sidebar-background: 30 100% 97%; /* Creamy White */
+    --sidebar-foreground: 210 29% 24%; /* Warm Gray */
+    --sidebar-primary: 17 100% 60%; /* Spice Orange */
+    --sidebar-primary-foreground: 0 0% 100%; /* White */
+    --sidebar-accent: 145 63% 42%; /* Fresh Herb Green */
     --sidebar-accent-foreground: 0 0% 100%; /* White */
-    --sidebar-border: 30 20% 82%; /* Slightly darker border for sidebar */
-    --sidebar-ring: 20 60% 55%; /* Deep Terracotta */
+    --sidebar-border: 30 30% 90%; /* Light cream border */
+    --sidebar-ring: 17 100% 60%; /* Spice Orange */
   }
 
   .dark {
-    --background: 30 15% 12%; /* Dark Warm Taupe */
-    --foreground: 40 25% 85%; /* Light Parchment/Cream */
+    --background: 210 30% 8%; /* Rich Dark Kitchen */
+    --foreground: 30 100% 95%; /* Cream text */
 
-    --card: 30 15% 18%; /* Darker Taupe for cards */
-    --card-foreground: 40 25% 85%; /* Light Parchment/Cream */
+    --card: 210 25% 12%; /* Dark card background */
+    --card-foreground: 30 100% 95%; /* Cream text */
 
-    --popover: 30 15% 15%; /* Darkest Taupe for popovers */
-    --popover-foreground: 40 25% 85%; /* Light Parchment/Cream */
+    --popover: 210 30% 10%; /* Darker popover */
+    --popover-foreground: 30 100% 95%; /* Cream text */
 
-    --primary: 20 55% 60%; /* Slightly lighter Terracotta for dark mode */
-    --primary-foreground: 30 10% 10%; /* Very Dark Taupe for text on primary */
+    --primary: 17 90% 65%; /* Bright Spice Orange for dark mode */
+    --primary-foreground: 210 30% 8%; /* Dark text on primary */
 
-    --secondary: 90 20% 25%; /* Dark Sage */
-    --secondary-foreground: 90 30% 80%; /* Light Sage for text on secondary */
+    --secondary: 210 20% 20%; /* Dark secondary */
+    --secondary-foreground: 30 100% 95%; /* Cream text on secondary */
 
-    --muted: 30 15% 22%; /* Dark Muted Taupe/Beige */
-    --muted-foreground: 30 20% 65%; /* Lighter Muted Taupe */
+    --muted: 210 15% 15%; /* Dark muted */
+    --muted-foreground: 30 50% 70%; /* Muted cream text */
 
-    --accent: 90 25% 55%; /* Slightly lighter Sage Green for dark mode */
-    --accent-foreground: 0 0% 10%; /* Very Dark, almost black for text on accent */
+    --accent: 145 50% 50%; /* Brighter Herb Green for dark mode */
+    --accent-foreground: 210 30% 8%; /* Dark text on accent */
 
-    --destructive: 0 50% 55%; /* Adjusted Red for dark mode */
-    --destructive-foreground: 0 0% 95%; /* Very Light Red/Off-white */
+    --destructive: 6 70% 60%; /* Bright Tomato Red for dark mode */
+    --destructive-foreground: 0 0% 100%; /* White */
 
-    --border: 30 15% 30%; /* Darker, desaturated border */
-    --input: 30 15% 25%; /* Darker input backgrounds */
-    --ring: 20 55% 60%; /* Lighter Terracotta for focus rings */
+    --border: 210 20% 20%; /* Dark border */
+    --input: 210 20% 15%; /* Dark input backgrounds */
+    --ring: 17 90% 65%; /* Bright Spice Orange for focus rings */
 
-    --chart-1: 20 55% 60%;
-    --chart-2: 90 25% 55%;
-    --chart-3: 40 60% 65%;
-    --chart-4: 15 30% 50%;
-    --chart-5: 200 25% 65%;
+    --chart-1: 17 90% 65%; /* Bright Spice Orange */
+    --chart-2: 145 50% 50%; /* Bright Herb Green */
+    --chart-3: 35 80% 60%; /* Bright Golden Saffron */
+    --chart-4: 6 70% 60%; /* Bright Tomato Red */
+    --chart-5: 280 40% 55%; /* Bright Deep Wine */
 
-    /* Sidebar variables adjusted to dark Modern Hearth theme */
-    --sidebar-background: 30 15% 15%; /* Darker Taupe for sidebar bg */
-    --sidebar-foreground: 40 25% 85%; /* Light Parchment */
-    --sidebar-primary: 20 55% 60%; /* Lighter Terracotta */
-    --sidebar-primary-foreground: 30 10% 5%; /* Very dark for text */
-    --sidebar-accent: 90 25% 55%; /* Lighter Sage */
-    --sidebar-accent-foreground: 0 0% 5%; /* Very dark for text */
-    --sidebar-border: 30 15% 25%; /* Darker border */
-    --sidebar-ring: 20 55% 60%; /* Lighter Terracotta */
+    /* Sidebar variables for dark food-inspired theme */
+    --sidebar-background: 210 25% 10%; /* Dark kitchen sidebar */
+    --sidebar-foreground: 30 100% 95%; /* Cream text */
+    --sidebar-primary: 17 90% 65%; /* Bright Spice Orange */
+    --sidebar-primary-foreground: 210 30% 8%; /* Dark text */
+    --sidebar-accent: 145 50% 50%; /* Bright Herb Green */
+    --sidebar-accent-foreground: 210 30% 8%; /* Dark text */
+    --sidebar-border: 210 20% 15%; /* Dark border */
+    --sidebar-ring: 17 90% 65%; /* Bright Spice Orange */
   }
 }
 
@@ -106,5 +104,483 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  /* Enhanced Typography System */
+  .text-hero {
+    font-size: clamp(3rem, 8vw, 8rem);
+    line-height: 0.9;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+  
+  .text-display {
+    font-size: clamp(2.5rem, 6vw, 6rem);
+    line-height: 0.95;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+  }
+  
+  .text-headline-xl {
+    font-size: clamp(2rem, 5vw, 4.5rem);
+    line-height: 1.1;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  
+  .text-headline-lg {
+    font-size: clamp(1.75rem, 4vw, 3.5rem);
+    line-height: 1.15;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+  }
+  
+  .text-headline-md {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    line-height: 1.2;
+    font-weight: 500;
+    letter-spacing: 0;
+  }
+  
+  .text-body-xl {
+    font-size: clamp(1.125rem, 2vw, 1.5rem);
+    line-height: 1.6;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+  }
+  
+  .text-body-lg {
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
+    line-height: 1.65;
+    font-weight: 400;
+    letter-spacing: 0.005em;
+  }
+  
+  .text-accent-script {
+    font-family: 'Dancing Script', cursive;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  
+  .text-food-quote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    line-height: 1.5;
+  }
+  
+  /* Food-inspired gradients */
+  .bg-spice-gradient {
+    background: linear-gradient(135deg, #FF6B35 0%, #F39C12 100%);
+  }
+  
+  .bg-herb-gradient {
+    background: linear-gradient(135deg, #27AE60 0%, #2ECC71 100%);
+  }
+  
+  .bg-tomato-gradient {
+    background: linear-gradient(135deg, #E74C3C 0%, #C0392B 100%);
+  }
+  
+  .bg-cream-gradient {
+    background: linear-gradient(135deg, #FFF8F3 0%, #FFE5D9 100%);
+  }
+  
+  .bg-kitchen-gradient {
+    background: linear-gradient(135deg, #FF6B35 0%, #F39C12 50%, #27AE60 100%);
+  }
+  
+  /* Food-themed shadows */
+  .shadow-spice {
+    box-shadow: 0 10px 25px -5px rgba(255, 107, 53, 0.1), 0 4px 6px -2px rgba(255, 107, 53, 0.05);
+  }
+  
+  .shadow-herb {
+    box-shadow: 0 10px 25px -5px rgba(39, 174, 96, 0.1), 0 4px 6px -2px rgba(39, 174, 96, 0.05);
+  }
+  
+  /* Hide scrollbar but keep functionality */
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  
+    /* Custom scrollbar for trending section */
+  .trending-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: #FF6B35 #f1f1f1;
+  }
+
+  .trending-scroll::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .trending-scroll::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
+
+  .trending-scroll::-webkit-scrollbar-thumb {
+    background: #FF6B35;
+    border-radius: 10px;
+  }
+
+  .trending-scroll::-webkit-scrollbar-thumb:hover {
+    background: #E74C3C;
+  }
+
+  /* Mobile-specific safe area utilities */
+  .safe-area-padding {
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+
+  /* Mobile-optimized touch targets */
+  @media (max-width: 768px) {
+    .btn-interactive {
+      min-height: 44px; /* iOS minimum touch target */
+      min-width: 44px;
+    }
+    
+    /* Ensure text doesn't get too small on mobile */
+    .text-hero {
+      line-height: 1.1;
+    }
+    
+    /* Better mobile spacing */
+    .mobile-container {
+      padding-left: max(1rem, env(safe-area-inset-left));
+      padding-right: max(1rem, env(safe-area-inset-right));
+    }
+  }
+  
+  /* Cooking-themed animations */
+  @keyframes steam {
+    0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.8; }
+    50% { transform: translateY(-10px) rotate(2deg); opacity: 1; }
+  }
+  
+  .animate-steam {
+    animation: steam 3s ease-in-out infinite;
+  }
+  
+  @keyframes sizzle {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+  }
+  
+  .animate-sizzle {
+    animation: sizzle 0.5s ease-in-out infinite;
+  }
+
+  /* Floating ingredient animations */
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    25% {
+      transform: translateY(-10px) rotate(5deg);
+    }
+    50% {
+      transform: translateY(-20px) rotate(0deg);
+    }
+    75% {
+      transform: translateY(-10px) rotate(-5deg);
+    }
+  }
+
+  @keyframes float-delay {
+    0%, 100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    25% {
+      transform: translateY(-15px) rotate(-3deg);
+    }
+    50% {
+      transform: translateY(-25px) rotate(0deg);
+    }
+    75% {
+      transform: translateY(-15px) rotate(3deg);
+    }
+  }
+
+  @keyframes float-slow {
+    0%, 100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    25% {
+      transform: translateY(-8px) rotate(2deg);
+    }
+    50% {
+      transform: translateY(-16px) rotate(0deg);
+    }
+    75% {
+      transform: translateY(-8px) rotate(-2deg);
+    }
+  }
+
+  @keyframes spin-slow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes bounce-slow {
+    0%, 100% {
+      transform: translateY(0);
+      animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+    }
+    50% {
+      transform: translateY(-15px);
+      animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    }
+  }
+
+  /* Animation Classes */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-float-delay {
+    animation: float-delay 7s ease-in-out infinite;
+    animation-delay: 1.5s;
+  }
+
+  .animate-float-slow {
+    animation: float-slow 8s ease-in-out infinite;
+    animation-delay: 0.5s;
+  }
+
+  .animate-spin-slow {
+    animation: spin-slow 10s linear infinite;
+  }
+
+  .animate-bounce-slow {
+    animation: bounce-slow 3s ease-in-out infinite;
+  }
+
+  /* New Micro-interaction Animations for Phase 4 */
+  @keyframes wiggle {
+    0%, 100% { transform: rotate(-2deg); }
+    50% { transform: rotate(2deg); }
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { 
+      transform: scale(1);
+      box-shadow: 0 0 0 0 rgba(255, 107, 53, 0.4);
+    }
+    50% { 
+      transform: scale(1.05);
+      box-shadow: 0 0 0 10px rgba(255, 107, 53, 0);
+    }
+  }
+
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-2px); }
+    75% { transform: translateX(2px); }
+  }
+
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+  }
+
+  @keyframes typewriter {
+    0% { width: 0; }
+    100% { width: 100%; }
+  }
+
+  @keyframes slide-in-up {
+    0% {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slide-in-left {
+    0% {
+      transform: translateX(-20px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slide-in-right {
+    0% {
+      transform: translateX(20px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade-in {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+  @keyframes scale-in {
+    0% { 
+      transform: scale(0.9);
+      opacity: 0;
+    }
+    100% { 
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  /* Animation Classes */
+  .animate-wiggle {
+    animation: wiggle 2s ease-in-out infinite;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  .animate-shake {
+    animation: shake 0.5s ease-in-out;
+  }
+
+  .animate-heartbeat {
+    animation: heartbeat 1s ease-in-out infinite;
+  }
+
+  .animate-slide-in-up {
+    animation: slide-in-up 0.6s ease-out forwards;
+  }
+
+  .animate-slide-in-left {
+    animation: slide-in-left 0.6s ease-out forwards;
+  }
+
+  .animate-slide-in-right {
+    animation: slide-in-right 0.6s ease-out forwards;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.8s ease-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scale-in 0.4s ease-out forwards;
+  }
+
+  /* Enhanced Button Styles */
+  .btn-interactive {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .btn-interactive::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+  }
+
+  .btn-interactive:hover::before {
+    left: 100%;
+  }
+
+  .btn-interactive:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  }
+
+  .btn-interactive:active {
+    transform: translateY(0);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Ripple Effect */
+  .btn-ripple {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-ripple::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+  }
+
+  .btn-ripple:active::after {
+    width: 300px;
+    height: 300px;
+  }
+
+  /* Hover Glow Effects */
+  .hover-glow {
+    transition: all 0.3s ease;
+  }
+
+  .hover-glow:hover {
+    box-shadow: 0 0 20px rgba(255, 107, 53, 0.3);
+    transform: translateY(-1px);
+  }
+
+  /* Stagger Animation Delays */
+  .stagger-1 { animation-delay: 0.1s; }
+  .stagger-2 { animation-delay: 0.2s; }
+  .stagger-3 { animation-delay: 0.3s; }
+  .stagger-4 { animation-delay: 0.4s; }
+  .stagger-5 { animation-delay: 0.5s; }
+  .stagger-6 { animation-delay: 0.6s; }
+
+  /* Loading Spinner */
+  @keyframes spin-pulse {
+    0% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.1); }
+    100% { transform: rotate(360deg) scale(1); }
+  }
+
+  .animate-spin-pulse {
+    animation: spin-pulse 1.5s ease-in-out infinite;
+  }
+
+  /* Shimmer Animation for Loading States */
+  @keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  .animate-shimmer {
+    animation: shimmer 2s ease-in-out infinite;
   }
 }
