@@ -105,7 +105,7 @@ export const mockRecipes: Recipe[] = [
     name: 'Spaghetti Carbonara',
     region: 'Lazio',
     country: 'Italy',
-    image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1612874742237-6526221588e3?auto=format&fit=crop&w=800&q=80',
     description: 'A classic Roman pasta dish made with eggs, hard cheese, cured pork, and black pepper. Authentic and rich in flavor.',
     ingredients: [
       { name: 'Spaghetti', quantity: '400', unit: 'g', image: 'https://placehold.co/150x150.png', notes: 'Bronze-cut if possible' },
@@ -135,7 +135,7 @@ export const mockRecipes: Recipe[] = [
     name: 'Chicken Tikka Masala',
     region: 'Punjab (disputed)',
     country: 'India / UK',
-    image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=800&q=80',
     description: 'Chunks of roasted marinated chicken in a spiced, creamy, and orange-colored curry sauce. A global favorite.',
     ingredients: [
       { name: 'Chicken Breast', quantity: '500', unit: 'g', image: 'https://placehold.co/150x150.png', notes: 'Cut into 1-inch pieces' },
@@ -170,7 +170,7 @@ export const mockRecipes: Recipe[] = [
     name: 'Sushi Rolls (Maki)',
     region: 'Kanto (Edo)',
     country: 'Japan',
-    image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=800&q=80',
     description: 'Classic Japanese vinegared rice rolls with various fillings, wrapped in seaweed (nori). A delicate art form.',
     ingredients: [
       { name: 'Sushi Rice', quantity: '2', unit: 'cups', image: 'https://placehold.co/150x150.png', notes: 'Japanese short grain' },
@@ -206,7 +206,7 @@ export const mockRecipes: Recipe[] = [
     name: 'Tacos al Pastor',
     region: 'Central Mexico',
     country: 'Mexico',
-    image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=800&q=80',
     description: 'Spit-grilled pork marinated in a blend of dried chilies, spices, and pineapple. Served on small corn tortillas.',
     ingredients: [
       { name: 'Pork Shoulder', quantity: '1', unit: 'kg', image: 'https://placehold.co/150x150.png', notes: 'Boneless, thinly sliced (1/4 inch)' },
@@ -246,7 +246,7 @@ export const mockRecipes: Recipe[] = [
     name: 'Beef Rendang',
     region: 'Minangkabau (Sumatra)',
     country: 'Indonesia',
-    image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1504544750208-dc0358e63f7f?auto=format&fit=crop&w=800&q=80',
     description: 'A rich and tender coconut beef stew, slow-cooked for hours until the liquid evaporates and the meat becomes dark and caramelized.',
     ingredients: [
       { name: 'Beef Chuck', quantity: '1', unit: 'kg', image: 'https://placehold.co/150x150.png', notes: 'Cut into 2-inch cubes' },
@@ -284,7 +284,7 @@ export const mockRecipes: Recipe[] = [
     name: 'Pad Thai',
     region: 'Central Thailand',
     country: 'Thailand',
-    image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1559314809-0d155014e29e?auto=format&fit=crop&w=800&q=80',
     description: 'Thailand\'s national stir-fried noodle dish: a harmonious blend of sweet, sour, salty, and spicy flavors with rice noodles, shrimp or tofu, eggs, and peanuts.',
     ingredients: [
       { name: 'Rice Noodles', quantity: '200', unit: 'g', image: 'https://placehold.co/150x150.png', notes: 'Flat, medium width (about 1/4 inch)' },
@@ -324,7 +324,7 @@ export const mockRecipes: Recipe[] = [
     name: 'Moussaka',
     region: 'Balkans/Eastern Mediterranean',
     country: 'Greece',
-    image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1574484284002-952d92456975?auto=format&fit=crop&w=800&q=80',
     description: 'A rich, layered oven-bake dish primarily featuring eggplant and/or potatoes, a spiced minced meat sauce, and a creamy béchamel topping.',
     ingredients: [
       { name: 'Eggplants', quantity: '2-3', unit: 'large', image: 'https://placehold.co/150x150.png', notes: 'About 1kg, sliced 1/2 inch thick' },
@@ -369,7 +369,7 @@ export const mockRecipes: Recipe[] = [
     name: 'Ratatouille',
     region: 'Provence',
     country: 'France',
-    image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80',
     description: 'A classic French Provençal stewed vegetable dish, colorful and healthy.',
     ingredients: [
       { name: 'Eggplant', quantity: '1', unit: 'large', image: 'https://placehold.co/150x150.png' },
@@ -400,7 +400,7 @@ export const mockRecipes: Recipe[] = [
     name: 'Bouillabaisse',
     region: 'Provence',
     country: 'France',
-    image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=800&q=80',
     description: 'A traditional Provençal fish stew with a variety of seafood and aromatic herbs.',
     ingredients: [
       { name: 'White Fish', quantity: '500', unit: 'g', image: 'https://placehold.co/150x150.png' },
@@ -433,7 +433,7 @@ export const mockRecipes: Recipe[] = [
     name: 'Shakshuka',
     region: 'North Africa',
     country: 'Tunisia',
-    image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1590412200988-a436970781fa?auto=format&fit=crop&w=800&q=80',
     description: 'Eggs poached in a spicy tomato and pepper sauce, a staple of North African and Middle Eastern cuisine.',
     ingredients: [
       { name: 'Eggs', quantity: '4', unit: '', image: 'https://placehold.co/150x150.png' },
@@ -465,7 +465,7 @@ export const mockRecipes: Recipe[] = [
     name: 'Okonomiyaki',
     region: 'Kansai',
     country: 'Japan',
-    image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=800&q=80',
     description: 'A savory Japanese pancake with cabbage, pork, and a variety of toppings.',
     ingredients: [
       { name: 'Cabbage', quantity: '2', unit: 'cups', image: 'https://placehold.co/150x150.png' },
@@ -494,7 +494,7 @@ export const mockRecipes: Recipe[] = [
     name: 'Tonkotsu Ramen',
     region: 'Kyushu',
     country: 'Japan',
-    image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=800&q=80',
     description: 'Rich pork bone broth ramen with noodles, chashu, and toppings.',
     ingredients: [
       { name: 'Pork Bones', quantity: '1', unit: 'kg', image: 'https://placehold.co/150x150.png' },
@@ -521,7 +521,7 @@ export const mockRecipes: Recipe[] = [
     name: 'Pav Bhaji',
     region: 'Maharashtra',
     country: 'India',
-    image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1606491956689-2ea866880c84?auto=format&fit=crop&w=800&q=80',
     description: 'A spicy mashed vegetable curry served with buttered bread rolls, a Mumbai street food classic.',
     ingredients: [
       { name: 'Potatoes', quantity: '2', unit: 'large', image: 'https://placehold.co/150x150.png' },
@@ -552,7 +552,7 @@ export const mockRecipes: Recipe[] = [
     name: 'Fish and Chips',
     region: 'England',
     country: 'UK',
-    image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1579208575657-c595a05383b7?auto=format&fit=crop&w=800&q=80',
     description: 'Crispy battered fish served with golden fries, a British pub favorite.',
     ingredients: [
       { name: 'White Fish Fillets', quantity: '2', unit: '', image: 'https://placehold.co/150x150.png' },
@@ -581,7 +581,7 @@ export const mockRecipes: Recipe[] = [
     name: 'Kimchi Jjigae',
     region: 'Seoul',
     country: 'Korea',
-    image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=800&q=80',
     description: 'A spicy Korean stew made with kimchi, tofu, and pork or tuna.',
     ingredients: [
       { name: 'Kimchi', quantity: '1', unit: 'cup', image: 'https://placehold.co/150x150.png' },
@@ -610,7 +610,7 @@ export const mockRecipes: Recipe[] = [
     name: 'Falafel',
     region: 'Middle East',
     country: 'Israel',
-    image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1484723091739-30a097e8f929?auto=format&fit=crop&w=800&q=80',
     description: 'Crispy fried balls made from ground chickpeas and herbs, a vegetarian favorite.',
     ingredients: [
       { name: 'Chickpeas', quantity: '1', unit: 'cup', image: 'https://placehold.co/150x150.png' },
@@ -639,7 +639,7 @@ export const mockRecipes: Recipe[] = [
     name: 'Ceviche',
     region: 'Lima',
     country: 'Peru',
-    image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1535399831218-d5bd36d1a6b3?auto=format&fit=crop&w=800&q=80',
     description: 'Fresh fish cured in citrus juice with onions, chili, and cilantro.',
     ingredients: [
       { name: 'White Fish', quantity: '300', unit: 'g', image: 'https://placehold.co/150x150.png' },
@@ -665,7 +665,7 @@ export const mockRecipes: Recipe[] = [
     name: 'Baklava',
     region: 'Istanbul',
     country: 'Turkey',
-    image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1519676867240-f03562e64548?auto=format&fit=crop&w=800&q=80',
     description: 'A sweet pastry made of layers of filo filled with nuts and honey syrup.',
     ingredients: [
       { name: 'Filo Dough', quantity: '250', unit: 'g', image: 'https://placehold.co/150x150.png' },
@@ -692,7 +692,7 @@ export const mockRecipes: Recipe[] = [
     name: 'Pho',
     region: 'Hanoi',
     country: 'Vietnam',
-    image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?auto=format&fit=crop&w=800&q=80',
     description: 'A fragrant noodle soup with beef, herbs, and rice noodles.',
     ingredients: [
       { name: 'Beef Bones', quantity: '500', unit: 'g', image: 'https://placehold.co/150x150.png' },
@@ -722,7 +722,7 @@ export const mockRecipes: Recipe[] = [
     name: 'Poutine',
     region: 'Quebec',
     country: 'Canada',
-    image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1586805608485-add336722759?auto=format&fit=crop&w=800&q=80',
     description: 'Crispy fries topped with cheese curds and hot gravy, a Canadian comfort food.',
     ingredients: [
       { name: 'Potatoes', quantity: '3', unit: 'large', image: 'https://placehold.co/150x150.png' },
@@ -746,7 +746,7 @@ export const mockRecipes: Recipe[] = [
     name: 'Paella',
     region: 'Valencia',
     country: 'Spain',
-    image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1534080564583-6be75777b70a?auto=format&fit=crop&w=800&q=80',
     description: 'A Spanish rice dish with saffron, seafood, and vegetables.',
     ingredients: [
       { name: 'Bomba Rice', quantity: '1', unit: 'cup', image: 'https://placehold.co/150x150.png' },
@@ -777,7 +777,7 @@ export const mockRecipes: Recipe[] = [
     name: 'Churrasco',
     region: 'Rio de Janeiro',
     country: 'Brazil',
-    image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=800&q=80',
     description: 'Brazilian grilled beef steak, often served with chimichurri sauce.',
     ingredients: [
       { name: 'Beef Steak', quantity: '2', unit: '', image: 'https://placehold.co/150x150.png' },

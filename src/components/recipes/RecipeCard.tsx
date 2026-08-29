@@ -3,13 +3,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { MapPin, Clock, Utensils, ChefHat, Globe, Flag } from 'lucide-react';
+import { MapPin, Clock, Utensils, Flame } from 'lucide-react';
 
 interface RecipeCardProps {
   recipe: Recipe;
+  featured?: boolean;
 }
 
-export default function RecipeCard({ recipe }: RecipeCardProps) {
+export default function RecipeCard({ recipe, featured = false }: RecipeCardProps) {
   const totalTime = () => {
     let prep = 0;
     let cook = 0;
@@ -28,56 +29,82 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
   return (
     <Link
       href={`/recipes/${recipe.id}`}
-      className="block group rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-transform duration-200"
+      className="block group focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-2xl"
     >
-      <Card className="h-full flex flex-col overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-border/30 hover:border-primary/60 bg-card group-hover:scale-[1.025] group-focus-visible:scale-[1.025]">
+      <Card
+        className={`h-full flex flex-col overflow-hidden rounded-2xl border-0 shadow-md hover:shadow-xl transition-all duration-500 bg-card ${
+          featured ? 'ring-1 ring-primary/10' : ''
+        } group-hover:-translate-y-1`}
+      >
         <CardHeader className="p-0 relative">
           <div className="relative w-full aspect-[16/10] overflow-hidden">
             <Image
               src={recipe.image}
               alt={recipe.name}
-              layout="fill"
-              objectFit="cover"
-              className="transition-transform duration-300 ease-in-out group-hover:scale-110 group-focus-visible:scale-110"
-              data-ai-hint={`${recipe.name.toLowerCase().split(' ').slice(0, 2).join(' ')} food delicious`}
+              fill
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-              priority={false}
+              className="object-cover transition-transform duration-500 ease-out group-hover:scale-110"
+              data-ai-hint={`${recipe.name.toLowerCase().split(' ').slice(0, 2).join(' ')} food delicious`}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-300" />
-            <div className="absolute top-3 left-3 flex gap-2 z-10">
-              <Badge className="bg-primary/90 text-primary-foreground text-xs font-semibold px-3 py-1 rounded-full flex items-center gap-1 animate-fade-in">
-                <Globe size={14} className="mr-1 -ml-1" color="#3A86FF" /> {recipe.region}
-              </Badge>
-              <Badge className="bg-accent/90 text-accent-foreground text-xs font-semibold px-3 py-1 rounded-full flex items-center gap-1 animate-fade-in delay-100">
-                <Flag size={13} className="mr-1 -ml-1" color="#E4572E" /> {recipe.country}
-              </Badge>
+            {/* Gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+            {/* Top badges */}
+            <div className="absolute top-3 left-3 flex flex-wrap gap-1.5">
+              {recipe.region && (
+                <Badge
+                  variant="secondary"
+                  className="bg-black/40 text-white backdrop-blur-sm border-0 text-[10px] uppercase tracking-wider font-semibold px-2 py-0.5 hover:bg-black/50"
+                >
+                  <MapPin size={10} className="mr-1" />
+                  {recipe.region}
+                </Badge>
+              )}
+              {featured && (
+                <Badge
+                  variant="default"
+                  className="bg-primary text-primary-foreground text-[10px] uppercase tracking-wider font-semibold px-2 py-0.5"
+                >
+                  <Flame size={10} className="mr-1" />
+                  Featured
+                </Badge>
+              )}
+            </div>
+
+            {/* Bottom meta on image */}
+            <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+              {totalTime() && (
+                <span className="inline-flex items-center text-white text-xs font-medium bg-black/40 backdrop-blur-sm rounded-full px-2.5 py-1">
+                  <Clock size={11} className="mr-1" />
+                  {totalTime()}
+                </span>
+              )}
             </div>
           </div>
         </CardHeader>
-        <CardContent className="p-5 flex-grow flex flex-col">
-          <CardTitle className="text-xl lg:text-2xl font-headline mb-2 leading-snug group-hover:text-primary transition-colors duration-200">
+
+        <CardContent className="flex-grow p-4 space-y-2">
+          <CardTitle className="text-base font-headline font-bold leading-snug text-foreground group-hover:text-primary transition-colors duration-300 line-clamp-2">
             {recipe.name}
           </CardTitle>
-          <p className="text-sm text-muted-foreground line-clamp-3 mb-4 flex-grow">
-            {recipe.description}
+
+          <p className="text-xs text-muted-foreground line-clamp-2 leading-relaxed">
+            {recipe.description || `A delicious ${recipe.region || ''} recipe from ${recipe.country || 'around the world'}.`}
           </p>
         </CardContent>
-        <CardFooter className="p-5 pt-2 border-t border-border/20 mt-auto">
-          <div className="flex justify-between items-center w-full">
-            <Badge
-              variant="outline"
-              className="text-xs font-medium bg-accent/10 text-foreground border-accent/30 group-hover:bg-accent/20 group-hover:border-accent/50 transition-colors duration-200 flex items-center gap-1"
-            >
-              <Utensils size={14} className="mr-1 text-accent" />
-              Recipe
-            </Badge>
-            {totalTime() && (
-              <div className="flex items-center text-xs text-muted-foreground group-hover:text-primary transition-colors duration-200">
-                <Clock size={14} className="mr-1 text-accent" />
-                {totalTime()}
-              </div>
-            )}
-          </div>
+
+        <CardFooter className="px-4 pb-4 pt-0 flex flex-wrap items-center gap-2">
+          {recipe.country && (
+            <span className="inline-flex items-center text-[11px] font-medium text-muted-foreground bg-muted/60 rounded-full px-2.5 py-1">
+              <Utensils size={10} className="mr-1 text-primary/70" />
+              {recipe.country}
+            </span>
+          )}
+          {recipe.servings && (
+            <span className="inline-flex items-center text-[11px] font-medium text-muted-foreground bg-muted/60 rounded-full px-2.5 py-1">
+              {recipe.servings} servings
+            </span>
+          )}
         </CardFooter>
       </Card>
     </Link>

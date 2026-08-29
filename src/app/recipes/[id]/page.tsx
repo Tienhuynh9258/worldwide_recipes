@@ -13,7 +13,7 @@ import { Badge } from '@/components/ui/badge';
 import RecipeCard from '@/components/recipes/RecipeCard';
 
 interface RecipePageProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 async function getRecipe(id: string): Promise<Recipe | undefined> {

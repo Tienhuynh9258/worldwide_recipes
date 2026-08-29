@@ -6,7 +6,7 @@ import Footer from '@/components/layout/Footer';
 
 export const metadata: Metadata = {
   title: 'Global Gastronomy Guide',
-  description: 'Discover recipes from around the world.',
+  description: 'Discover authentic recipes from every corner of the globe. Your culinary adventure starts here.',
 };
 
 export default function RootLayout({
@@ -15,14 +15,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
-      <body className="font-body antialiased flex flex-col min-h-screen">
+      <body className="antialiased flex flex-col min-h-screen font-body">
         <Header />
-        <main className="flex-grow container mx-auto px-4 py-8">
+        <main className="flex-grow">
           {children}
         </main>
         <Footer />

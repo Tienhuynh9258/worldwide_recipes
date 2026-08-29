@@ -1,102 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@300;400;500;600;700&family=Playfair+Display+SC:wght@400;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 40 35% 96%; /* Warm Parchment/Creamy Off-White */
-    --foreground: 30 15% 25%; /* Deep Warm Taupe */
+    --background: 36 33% 97%; /* Warm Cream */
+    --foreground: 30 15% 15%; /* Deep Brown */
 
-    --card: 0 0% 100%; /* Clean White for cards */
-    --card-foreground: 30 15% 25%; /* Deep Warm Taupe */
+    --card: 0 0% 100%;
+    --card-foreground: 30 15% 15%;
 
-    --popover: 0 0% 100%; /* Clean White for popovers */
-    --popover-foreground: 30 15% 25%; /* Deep Warm Taupe */
+    --popover: 0 0% 100%;
+    --popover-foreground: 30 15% 15%;
 
-    --primary: 20 60% 55%; /* Deep Terracotta */
-    --primary-foreground: 40 35% 98%; /* Pale Parchment (for text on primary) */
+    --primary: 18 72% 55%; /* Premium Terracotta */
+    --primary-foreground: 36 33% 97%;
 
-    --secondary: 90 30% 88%; /* Light Sage (lighter for backgrounds) */
-    --secondary-foreground: 90 25% 30%; /* Darker Sage for text on secondary */
+    --secondary: 95 28% 90%; /* Soft Sage */
+    --secondary-foreground: 90 25% 25%;
 
-    --muted: 30 25% 90%; /* Soft, Muted Terracotta/Beige */
-    --muted-foreground: 30 15% 45%; /* Muted Taupe */
+    --muted: 35 25% 92%;
+    --muted-foreground: 30 12% 42%;
 
-    --accent: 90 30% 50%; /* Muted Sage Green */
-    --accent-foreground: 0 0% 100%; /* White (or very light sage for text on accent) */
-    /* --accent-foreground: 90 50% 95%; */ /* Very Light Sage */
+    --accent: 38 85% 58%; /* Warm Golden */
+    --accent-foreground: 30 15% 15%;
 
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
 
-    --destructive: 0 60% 50%; /* Standard Red for destructive actions */
-    --destructive-foreground: 0 0% 100%; /* White */
+    --border: 35 20% 88%;
+    --input: 35 20% 93%;
+    --ring: 18 72% 55%;
 
-    --border: 30 20% 85%; /* Soft, desaturated border */
-    --input: 30 20% 90%; /* Slightly lighter for input backgrounds */
-    --ring: 20 60% 55%; /* Deep Terracotta for focus rings */
+    --chart-1: 18 72% 55%; /* Terracotta */
+    --chart-2: 95 28% 45%; /* Sage */
+    --chart-3: 38 85% 58%; /* Golden */
+    --chart-4: 15 42% 42%; /* Cocoa */
+    --chart-5: 195 30% 55%; /* Steel Blue */
 
-    --chart-1: 20 60% 55%; /* Deep Terracotta */
-    --chart-2: 90 30% 50%; /* Muted Sage Green */
-    --chart-3: 40 70% 60%; /* Warm Gold */
-    --chart-4: 15 40% 45%; /* Earthy Brown */
-    --chart-5: 200 30% 60%; /* Muted Blue-Gray */
+    --radius: 1rem;
 
-    --radius: 0.75rem;
-
-    /* Sidebar variables adjusted to Modern Hearth theme */
-    --sidebar-background: 40 30% 93%; /* Slightly darker Parchment */
-    --sidebar-foreground: 30 15% 25%; /* Deep Warm Taupe */
-    --sidebar-primary: 20 60% 55%; /* Deep Terracotta */
-    --sidebar-primary-foreground: 40 35% 98%; /* Pale Parchment */
-    --sidebar-accent: 90 30% 50%; /* Muted Sage Green */
-    --sidebar-accent-foreground: 0 0% 100%; /* White */
-    --sidebar-border: 30 20% 82%; /* Slightly darker border for sidebar */
-    --sidebar-ring: 20 60% 55%; /* Deep Terracotta */
+    --sidebar-background: 36 30% 95%;
+    --sidebar-foreground: 30 15% 15%;
+    --sidebar-primary: 18 72% 55%;
+    --sidebar-primary-foreground: 36 33% 97%;
+    --sidebar-accent: 95 28% 90%;
+    --sidebar-accent-foreground: 90 25% 25%;
+    --sidebar-border: 35 20% 88%;
+    --sidebar-ring: 18 72% 55%;
   }
 
   .dark {
-    --background: 30 15% 12%; /* Dark Warm Taupe */
-    --foreground: 40 25% 85%; /* Light Parchment/Cream */
+    --background: 30 15% 10%;
+    --foreground: 36 25% 88%;
 
-    --card: 30 15% 18%; /* Darker Taupe for cards */
-    --card-foreground: 40 25% 85%; /* Light Parchment/Cream */
+    --card: 30 15% 15%;
+    --card-foreground: 36 25% 88%;
 
-    --popover: 30 15% 15%; /* Darkest Taupe for popovers */
-    --popover-foreground: 40 25% 85%; /* Light Parchment/Cream */
+    --popover: 30 15% 13%;
+    --popover-foreground: 36 25% 88%;
 
-    --primary: 20 55% 60%; /* Slightly lighter Terracotta for dark mode */
-    --primary-foreground: 30 10% 10%; /* Very Dark Taupe for text on primary */
+    --primary: 18 65% 60%;
+    --primary-foreground: 30 10% 8%;
 
-    --secondary: 90 20% 25%; /* Dark Sage */
-    --secondary-foreground: 90 30% 80%; /* Light Sage for text on secondary */
+    --secondary: 90 18% 22%;
+    --secondary-foreground: 95 28% 85%;
 
-    --muted: 30 15% 22%; /* Dark Muted Taupe/Beige */
-    --muted-foreground: 30 20% 65%; /* Lighter Muted Taupe */
+    --muted: 30 12% 20%;
+    --muted-foreground: 30 15% 60%;
 
-    --accent: 90 25% 55%; /* Slightly lighter Sage Green for dark mode */
-    --accent-foreground: 0 0% 10%; /* Very Dark, almost black for text on accent */
+    --accent: 38 75% 55%;
+    --accent-foreground: 30 15% 10%;
 
-    --destructive: 0 50% 55%; /* Adjusted Red for dark mode */
-    --destructive-foreground: 0 0% 95%; /* Very Light Red/Off-white */
+    --destructive: 0 60% 55%;
+    --destructive-foreground: 0 0% 95%;
 
-    --border: 30 15% 30%; /* Darker, desaturated border */
-    --input: 30 15% 25%; /* Darker input backgrounds */
-    --ring: 20 55% 60%; /* Lighter Terracotta for focus rings */
+    --border: 30 12% 25%;
+    --input: 30 12% 20%;
+    --ring: 18 65% 60%;
 
-    --chart-1: 20 55% 60%;
-    --chart-2: 90 25% 55%;
-    --chart-3: 40 60% 65%;
-    --chart-4: 15 30% 50%;
-    --chart-5: 200 25% 65%;
+    --chart-1: 18 65% 60%;
+    --chart-2: 95 20% 55%;
+    --chart-3: 38 75% 60%;
+    --chart-4: 15 35% 48%;
+    --chart-5: 195 25% 60%;
 
-    /* Sidebar variables adjusted to dark Modern Hearth theme */
-    --sidebar-background: 30 15% 15%; /* Darker Taupe for sidebar bg */
-    --sidebar-foreground: 40 25% 85%; /* Light Parchment */
-    --sidebar-primary: 20 55% 60%; /* Lighter Terracotta */
-    --sidebar-primary-foreground: 30 10% 5%; /* Very dark for text */
-    --sidebar-accent: 90 25% 55%; /* Lighter Sage */
-    --sidebar-accent-foreground: 0 0% 5%; /* Very dark for text */
-    --sidebar-border: 30 15% 25%; /* Darker border */
-    --sidebar-ring: 20 55% 60%; /* Lighter Terracotta */
+    --sidebar-background: 30 12% 12%;
+    --sidebar-foreground: 36 25% 88%;
+    --sidebar-primary: 18 65% 60%;
+    --sidebar-primary-foreground: 30 10% 5%;
+    --sidebar-accent: 90 18% 25%;
+    --sidebar-accent-foreground: 36 25% 88%;
+    --sidebar-border: 30 12% 22%;
+    --sidebar-ring: 18 65% 60%;
   }
 }
 
@@ -106,5 +104,49 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: 'Karla', sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6, .font-headline {
+    font-family: 'Playfair Display SC', serif;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glass {
+    background: hsl(var(--card) / 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .glass-strong {
+    background: hsl(var(--card) / 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  /* Custom scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 4px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.3);
   }
 }

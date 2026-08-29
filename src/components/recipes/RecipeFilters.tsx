@@ -6,11 +6,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { Search, MapPin as IconMapPin, ListFilter, FilterX, Salad, Wheat, Drumstick, CookingPot, ChefHat, Palette, Globe, Flag, Droplet } from 'lucide-react';
+import { Search, MapPin, ListFilter, FilterX, Salad, Wheat, Drumstick, CookingPot, ChefHat, Palette, Globe, Droplet } from 'lucide-react';
 import type { IngredientGroup } from '@/lib/mock-data';
 import { Button } from '@/components/ui/button';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
-
 
 interface RecipeFiltersProps {
   selectedCookingTime: string;
@@ -29,19 +27,12 @@ interface RecipeFiltersProps {
 const ALL_REGIONS_PLACEHOLDER_VALUE = "__ALL_REGIONS_PLACEHOLDER__";
 const ALL_COUNTRIES_PLACEHOLDER_VALUE = "__ALL_COUNTRIES_PLACEHOLDER__";
 
-const groupIcons: { [key: string]: (props: any) => JSX.Element } = {
-  'Protein': (props) => <Drumstick {...props} color="#E4572E" />, // Red-orange
-  'Carbohydrate': (props) => <Wheat {...props} color="#FFD166" />, // Yellow
-  'Fat': (props) => <Droplet {...props} color="#3A86FF" />, // Blue, now Droplet icon
-  'Vitamins & Minerals (Vegetables, Fruits, Spices)': (props) => <Salad {...props} color="#43AA8B" />, // Green
+const groupIconMap: Record<string, React.ReactNode> = {
+  'Protein': <Drumstick size={14} className="text-rose-500" />,
+  'Carbohydrate': <Wheat size={14} className="text-amber-500" />,
+  'Fat': <Droplet size={14} className="text-sky-500" />,
+  'Vitamins & Minerals (Vegetables, Fruits, Spices)': <Salad size={14} className="text-emerald-500" />,
 };
-const paletteIcon = (props: any) => <Palette {...props} color="#9D4EDD" />; // Purple
-const chefHatIcon = (props: any) => <ChefHat {...props} color="#FF8800" />; // Orange
-const mapPinIcon = (props: any) => <IconMapPin {...props} color="#E4572E" />; // Red-orange
-const globeIcon = (props: any) => <Globe {...props} color="#3A86FF" />; // Blue
-const flagIcon = (props: any) => <Flag {...props} color="#E4572E" />; // Red
-const cookingPotIcon = (props: any) => <CookingPot {...props} color="#43AA8B" />; // Green
-
 
 export default function RecipeFilters({
   selectedCookingTime,
@@ -56,160 +47,190 @@ export default function RecipeFilters({
   countries,
   categorizedIngredients,
 }: RecipeFiltersProps) {
-  
-  const handleIngredientChange = (ingredientName: string) => {
-    setSelectedIngredients(prev =>
+  const clearFilters = () => {
+    setSelectedCookingTime('any');
+    setSelectedRegion(ALL_REGIONS_PLACEHOLDER_VALUE);
+    setSelectedCountry(ALL_COUNTRIES_PLACEHOLDER_VALUE);
+    setSelectedIngredients([]);
+  };
+
+  const handleIngredientToggle = (ingredientName: string) => {
+    setSelectedIngredients((prev) =>
       prev.includes(ingredientName)
-        ? prev.filter(item => item !== ingredientName)
+        ? prev.filter((i) => i !== ingredientName)
         : [...prev, ingredientName]
     );
   };
 
-  const clearAllFilters = () => {
-    setSelectedRegion('');
-    setSelectedCountry('');
-    setSelectedIngredients([]);
-    setSelectedCookingTime('');
-  };
-
-  const hasActiveFilters = selectedRegion || selectedCountry || selectedIngredients.length > 0 || selectedCookingTime;
+  const activeFilterCount =
+    (selectedCookingTime !== 'any' ? 1 : 0) +
+    (selectedRegion && selectedRegion !== ALL_REGIONS_PLACEHOLDER_VALUE ? 1 : 0) +
+    (selectedCountry && selectedCountry !== ALL_COUNTRIES_PLACEHOLDER_VALUE ? 1 : 0) +
+    selectedIngredients.length;
 
   return (
-    <Card className="mb-12 p-6 md:p-8 bg-card rounded-xl shadow-xl border border-border/40 transition-all duration-300 ease-in-out hover:shadow-2xl">
-      <CardHeader className="p-0 mb-6 md:mb-8">
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-          <CardTitle className="text-3xl font-headline text-foreground flex items-center">
-            {paletteIcon({ size: 30, className: 'mr-3' })} Filter & Refine Your Search
-          </CardTitle>
-          {hasActiveFilters && (
-            <Button variant="ghost" onClick={clearAllFilters} className="text-sm text-primary hover:text-primary/80 self-start sm:self-center px-3 py-1.5 h-auto">
-              <FilterX size={18} className="mr-2" /> Clear All Filters
-            </Button>
+    <div className="w-full h-full flex flex-col space-y-4" id="filter-section">
+      {/* Header */}
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-primary/10">
+            <ListFilter size={16} className="text-primary" />
+          </div>
+          <div>
+            <h2 className="text-lg font-headline font-bold text-foreground">Filters</h2>
+            <p className="text-xs text-muted-foreground">Refine your search</p>
+          </div>
+        </div>
+        {activeFilterCount > 0 && (
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={clearFilters}
+            className="text-xs text-muted-foreground hover:text-destructive hover:bg-destructive/5"
+          >
+            <FilterX size={13} className="mr-1" />
+            Clear ({activeFilterCount})
+          </Button>
+        )}
+      </div>
+
+      {/* Region Select */}
+      <div className="space-y-1.5">
+        <Label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground flex items-center gap-1.5">
+          <Globe size={13} className="text-primary/70" /> Region
+        </Label>
+        <Select value={selectedRegion || ALL_REGIONS_PLACEHOLDER_VALUE} onValueChange={setSelectedRegion}>
+          <SelectTrigger className="w-full rounded-xl border-border/50 bg-muted/30 hover:bg-muted/60 transition-colors h-10 text-sm">
+            <SelectValue placeholder="All Regions" />
+          </SelectTrigger>
+          <SelectContent className="rounded-xl">
+            <SelectItem value={ALL_REGIONS_PLACEHOLDER_VALUE}>All Regions</SelectItem>
+            {regions.map((region) => (
+              <SelectItem key={region} value={region}>
+                <span className="flex items-center gap-2">
+                  <MapPin size={13} className="text-primary/60" />
+                  {region}
+                </span>
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+
+      {/* Country Select */}
+      <div className="space-y-1.5">
+        <Label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground flex items-center gap-1.5">
+          <Globe size={13} className="text-primary/70" /> Country
+        </Label>
+        <Select value={selectedCountry || ALL_COUNTRIES_PLACEHOLDER_VALUE} onValueChange={setSelectedCountry}>
+          <SelectTrigger className="w-full rounded-xl border-border/50 bg-muted/30 hover:bg-muted/60 transition-colors h-10 text-sm">
+            <SelectValue placeholder="All Countries" />
+          </SelectTrigger>
+          <SelectContent className="rounded-xl">
+            <SelectItem value={ALL_COUNTRIES_PLACEHOLDER_VALUE}>All Countries</SelectItem>
+            {countries.map((country) => (
+              <SelectItem key={country} value={country}>
+                {country}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+
+      {/* Cooking Time */}
+      <div className="space-y-1.5">
+        <Label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground flex items-center gap-1.5">
+          <CookingPot size={13} className="text-primary/70" /> Cooking Time
+        </Label>
+        <Select value={selectedCookingTime || 'any'} onValueChange={setSelectedCookingTime}>
+          <SelectTrigger className="w-full rounded-xl border-border/50 bg-muted/30 hover:bg-muted/60 transition-colors h-10 text-sm">
+            <SelectValue placeholder="Any" />
+          </SelectTrigger>
+          <SelectContent className="rounded-xl">
+            <SelectItem value="any">Any</SelectItem>
+            <SelectItem value="30">Under 30 mins</SelectItem>
+            <SelectItem value="60">Under 1 hour</SelectItem>
+            <SelectItem value="120">Under 2 hours</SelectItem>
+            <SelectItem value="121">2+ hours</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+
+      {/* Ingredients Accordion */}
+      <div className="flex-1 overflow-hidden flex flex-col min-h-0">
+        <Label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground flex items-center gap-1.5 mb-2">
+          <Palette size={13} className="text-primary/70" /> Ingredients
+        </Label>
+        <div className="flex-1 overflow-y-auto pr-1 min-h-0 custom-scrollbar">
+          <Accordion type="multiple" className="w-full space-y-1.5">
+            {categorizedIngredients.map((group) => (
+              <AccordionItem
+                key={group.groupName}
+                value={group.groupName}
+                className="border border-border/40 rounded-xl overflow-hidden bg-muted/20 data-[state=open]:bg-muted/40 transition-colors"
+              >
+                <AccordionTrigger className="px-3 py-2.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground hover:no-underline hover:text-foreground transition-colors">
+                  <span className="flex items-center gap-2">
+                    {groupIconMap[group.groupName] || <ChefHat size={14} className="text-primary/60" />}
+                    {group.groupName}
+                  </span>
+                </AccordionTrigger>
+                <AccordionContent className="px-3 pb-3">
+                  <div className="space-y-2.5 pt-1">
+                    {group.ingredients.map((ing) => (
+                      <div key={ing.name} className="flex items-center space-x-2.5">
+                        <Checkbox
+                          id={`ing-${ing.name}`}
+                          checked={selectedIngredients.includes(ing.name)}
+                          onCheckedChange={() => handleIngredientToggle(ing.name)}
+                          className="rounded-[5px] border-border/70 data-[state=checked]:bg-primary data-[state=checked]:border-primary"
+                        />
+                        <Label
+                          htmlFor={`ing-${ing.name}`}
+                          className="text-xs text-muted-foreground leading-none cursor-pointer select-none hover:text-foreground transition-colors peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                        >
+                          {ing.name}
+                        </Label>
+                      </div>
+                    ))}
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+      </div>
+
+      {/* Active filter tags */}
+      {activeFilterCount > 0 && (
+        <div className="flex flex-wrap gap-1.5 pt-1">
+          {selectedCookingTime !== 'any' && (
+            <span className="inline-flex items-center text-[10px] font-medium bg-primary/10 text-primary rounded-full px-2 py-0.5">
+              {selectedCookingTime === '121' ? '2+ hrs' : `< ${selectedCookingTime} min`}
+            </span>
+          )}
+          {selectedRegion && selectedRegion !== ALL_REGIONS_PLACEHOLDER_VALUE && (
+            <span className="inline-flex items-center text-[10px] font-medium bg-primary/10 text-primary rounded-full px-2 py-0.5">
+              {selectedRegion}
+            </span>
+          )}
+          {selectedCountry && selectedCountry !== ALL_COUNTRIES_PLACEHOLDER_VALUE && (
+            <span className="inline-flex items-center text-[10px] font-medium bg-primary/10 text-primary rounded-full px-2 py-0.5">
+              {selectedCountry}
+            </span>
+          )}
+          {selectedIngredients.slice(0, 3).map((ing) => (
+            <span key={ing} className="inline-flex items-center text-[10px] font-medium bg-primary/10 text-primary rounded-full px-2 py-0.5">
+              {ing}
+            </span>
+          ))}
+          {selectedIngredients.length > 3 && (
+            <span className="inline-flex items-center text-[10px] font-medium bg-muted text-muted-foreground rounded-full px-2 py-0.5">
+              +{selectedIngredients.length - 3}
+            </span>
           )}
         </div>
-      </CardHeader>
-      
-      <CardContent className="p-0">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-8">
-          
-          <div className="space-y-2">
-            <Label htmlFor="cookingTimeFilter" className="flex items-center text-base font-medium text-foreground/90">
-              {cookingPotIcon({ size: 18, className: 'mr-2.5' })}
-              Filter by Cooking Time
-            </Label>
-            <Select
-              value={selectedCookingTime}
-              onValueChange={setSelectedCookingTime}
-            >
-              <SelectTrigger id="cookingTimeFilter" className="w-full bg-muted/40 focus:bg-background shadow-sm text-base h-12 border-border/50 focus:ring-2 focus:ring-primary/50">
-                <SelectValue placeholder="Any" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="any">Any</SelectItem>
-                <SelectItem value="under-15">Under 15 minutes</SelectItem>
-                <SelectItem value="15-30">15-30 minutes</SelectItem>
-                <SelectItem value="30-60">30-60 minutes</SelectItem>
-                <SelectItem value="over-60">Over 1 hour</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="regionFilter" className="flex items-center text-base font-medium text-foreground/90">
-              {globeIcon({ size: 18, className: 'mr-2.5' })}
-              Filter by Region
-            </Label>
-            <Select
-              value={selectedRegion || ALL_REGIONS_PLACEHOLDER_VALUE}
-              onValueChange={(value) => {
-                setSelectedRegion(value === ALL_REGIONS_PLACEHOLDER_VALUE ? "" : value);
-              }}
-            >
-              <SelectTrigger id="regionFilter" className="w-full bg-muted/40 focus:bg-background shadow-sm text-base h-12 border-border/50 focus:ring-2 focus:ring-primary/50">
-                <SelectValue placeholder="All Regions" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value={ALL_REGIONS_PLACEHOLDER_VALUE}>All Regions</SelectItem>
-                {regions.map(region => (
-                  <SelectItem key={region} value={region}>{region}</SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="countryFilter" className="flex items-center text-base font-medium text-foreground/90">
-              {flagIcon({ size: 18, className: 'mr-2.5' })}
-              Filter by Country
-            </Label>
-            <Select
-              value={selectedCountry || ALL_COUNTRIES_PLACEHOLDER_VALUE}
-              onValueChange={(value) => {
-                setSelectedCountry(value === ALL_COUNTRIES_PLACEHOLDER_VALUE ? "" : value);
-              }}
-            >
-              <SelectTrigger id="countryFilter" className="w-full bg-muted/40 focus:bg-background shadow-sm text-base h-12 border-border/50 focus:ring-2 focus:ring-primary/50">
-                <SelectValue placeholder="All Countries" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value={ALL_COUNTRIES_PLACEHOLDER_VALUE}>All Countries</SelectItem>
-                {countries.map(country => (
-                  <SelectItem key={country} value={country}>{country}</SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-        </div>
-
-        <Accordion type="single" collapsible className="w-full mt-10 border-t border-border/40 pt-8">
-          <AccordionItem value="ingredients-main" className="border-b-0">
-            <AccordionTrigger className="text-xl font-medium hover:no-underline py-3 px-1 text-foreground hover:text-primary transition-colors duration-200">
-              <div className="flex items-center">
-                {chefHatIcon({ size: 24, className: 'mr-3' })}
-                Filter by Ingredients (Nutritional Groups)
-              </div>
-            </AccordionTrigger>
-            <AccordionContent className="pt-4">
-              <Accordion type="multiple" className="w-full space-y-4 pt-2">
-                {categorizedIngredients.map((group) => {
-                  const GroupIcon = groupIcons[group.groupName] || ListFilter;
-                  return (
-                    <AccordionItem key={group.groupName} value={group.groupName} className="border rounded-lg overflow-hidden bg-muted/20 shadow-md hover:shadow-lg transition-shadow duration-300 border-border/30">
-                      <AccordionTrigger className="text-lg font-medium py-4 px-5 hover:bg-muted/40 rounded-t-lg hover:no-underline transition-colors duration-200 focus:bg-muted/40">
-                        <div className="flex items-center">
-                          <GroupIcon size={20} className="mr-3" />
-                          {group.groupName} ({selectedIngredients.filter(si => group.ingredients.some(i => i.name === si)).length}/{group.ingredients.length})
-                        </div>
-                      </AccordionTrigger>
-                      <AccordionContent className="pt-4 pb-5 px-5 bg-background/20">
-                        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-4">
-                          {group.ingredients.map(ingredient => (
-                            <div key={ingredient.name} className="flex items-center space-x-3 group">
-                              <Checkbox
-                                id={`ingredient-${group.groupName}-${ingredient.name.replace(/\s+/g, '-')}`}
-                                checked={selectedIngredients.includes(ingredient.name)}
-                                onCheckedChange={() => handleIngredientChange(ingredient.name)}
-                                aria-label={`Filter by ${ingredient.name}`}
-                                className="border-primary/60 data-[state=checked]:bg-primary data-[state=checked]:border-primary transition-all duration-200 transform group-hover:scale-110"
-                              />
-                              <Label 
-                                htmlFor={`ingredient-${group.groupName}-${ingredient.name.replace(/\s+/g, '-')}`} 
-                                className="text-base font-normal cursor-pointer group-hover:text-primary transition-colors duration-200 leading-snug"
-                              >
-                                {ingredient.name}
-                              </Label>
-                            </div>
-                          ))}
-                        </div>
-                      </AccordionContent>
-                    </AccordionItem>
-                  );
-                })}
-              </Accordion>
-            </AccordionContent>
-          </AccordionItem>
-        </Accordion>
-      </CardContent>
-    </Card>
+      )}
+    </div>
   );
 }

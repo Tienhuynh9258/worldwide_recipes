@@ -1,11 +1,14 @@
+"use client";
+
 import { useEffect, useState } from 'react';
-import { ChefHat, Sun, Moon } from 'lucide-react';
+import { Sun, Moon } from 'lucide-react';
 
 export default function DarkModeToggle() {
   const [isDark, setIsDark] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    // On mount, check system or saved preference
+    setMounted(true);
     const saved = localStorage.getItem('theme');
     if (saved) {
       setIsDark(saved === 'dark');
@@ -26,19 +29,30 @@ export default function DarkModeToggle() {
     });
   };
 
+  if (!mounted) return null;
+
   return (
     <button
       aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
       onClick={toggleDark}
-      className="fixed top-6 right-6 z-50 bg-card/80 dark:bg-background/80 border border-border/40 rounded-full p-2 shadow-lg hover:shadow-xl transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+      className="fixed top-5 right-5 z-50 w-10 h-10 rounded-full glass shadow-md border border-border/30 flex items-center justify-center text-muted-foreground hover:text-foreground hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
       tabIndex={0}
     >
       <span className="sr-only">Toggle dark mode</span>
-      <span className="relative flex items-center justify-center w-7 h-7">
-        <ChefHat className={`absolute transition-all duration-300 ${isDark ? 'opacity-0 scale-75' : 'opacity-100 scale-100'} text-primary`} size={22} />
-        <Sun className={`absolute transition-all duration-300 ${isDark ? 'opacity-0 scale-75' : 'opacity-100 scale-100'} text-accent`} size={22} />
-        <Moon className={`absolute transition-all duration-300 ${isDark ? 'opacity-100 scale-100' : 'opacity-0 scale-75'} text-accent`} size={22} />
+      <span className="relative flex items-center justify-center w-5 h-5">
+        <Sun
+          className={`absolute transition-all duration-300 ${
+            isDark ? 'opacity-0 scale-75 rotate-90' : 'opacity-100 scale-100 rotate-0'
+          } text-primary`}
+          size={20}
+        />
+        <Moon
+          className={`absolute transition-all duration-300 ${
+            isDark ? 'opacity-100 scale-100 rotate-0' : 'opacity-0 scale-75 -rotate-90'
+          } text-accent`}
+          size={20}
+        />
       </span>
     </button>
   );
-} 
+}
