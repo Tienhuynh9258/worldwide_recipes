@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ImageUp, AlertCircle, Loader2, Search, ListChecks } from 'lucide-react';
 import { imageSearchRecipe } from '@/ai/flows/image-search-recipe';
-import { fileToDataUri } from '@/lib/file-utils';
+import { compressImageToDataUri } from '@/lib/file-utils';
 import Image from 'next/image'; // next/image
 import { useToast } from '@/hooks/use-toast';
 
@@ -40,6 +40,12 @@ export default function ImageSearchModal({ isOpen, onOpenChange, onRecipeSelect 
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
+      if (file.size > 20 * 1024 * 1024) {
+        setError("That image is too large (max 20MB). Please choose a smaller photo.");
+        setSelectedFile(null);
+        setPreviewUrl(null);
+        return;
+      }
       setSelectedFile(file);
       setError(null);
       setSuggestedRecipes(null);
@@ -60,7 +66,7 @@ export default function ImageSearchModal({ isOpen, onOpenChange, onRecipeSelect 
     setError(null);
     setSuggestedRecipes(null);
     try {
-      const dataUri = await fileToDataUri(selectedFile);
+      const dataUri = await compressImageToDataUri(selectedFile);
       const result = await imageSearchRecipe({ image: dataUri });
       setSuggestedRecipes(result.recipes);
       if (result.recipes.length === 0) {
