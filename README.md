@@ -1,7 +1,7 @@
 # Global Gastronomy Guide
 
 <p align="center">
-  <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80" alt="World Cuisine" width="600" style="border-radius: 12px;" />
+  <img src="src/app/favicon.ico" alt="Gym Track Logo" width="120" />
 </p>
 
 <p align="center">
