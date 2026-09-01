@@ -1,7 +1,7 @@
 # Global Gastronomy Guide
 
 <p align="center">
-  <img src="src/app/favicon.ico" alt="Gym Track Logo" width="120" />
+  <img src="src/app/favicon.ico" alt="Worldwide Recipes Logo" width="120" />
 </p>
 
 <p align="center">
